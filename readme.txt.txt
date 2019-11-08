@@ -16,3 +16,5 @@ Commands:
 	git push			<-- pushes the items you've commited to the github repository online.
 	git pull origin [branch] 	<-- pulls changes from the branch name into your branch. often the branch will be "master"
 					Will often result in merge conflicts! be careful what you delete!
+
+Learning 
