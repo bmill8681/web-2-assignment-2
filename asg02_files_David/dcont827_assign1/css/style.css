@@ -1,0 +1,349 @@
+body {
+    margin: 30px;
+    background-color: #F0F0F0;
+}
+
+/* *********************************** */
+/* LAYOUT STYLING */
+/* *********************************** */
+
+.container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 20% 40% 40%;
+    grid-template-rows: 200px 150px 150px 120px 200px;
+    font-size: 1em;
+}
+
+.box {
+    background-color: #E8E8E8;
+    color: #36454F;
+    font-family: 'Raleway', sans-serif;
+}
+
+.header {
+    grid-column: 1 / span 3;
+    background-color: #569c9f;
+    color: #36454F;
+    font-family: 'Raleway', sans-serif;
+}
+
+.a {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.a section {
+    margin: 1em;
+}
+
+.a select {
+    font-family: 'Raleway', sans-serif;
+}
+
+.b {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 2;
+}
+
+.b h2 {
+    margin: 0.7em;
+}
+
+.b section {
+    overflow-y: scroll;
+    height: 220px;
+    margin: 1em;
+}
+
+h2#cityName {
+    margin: 0em;
+}
+
+.c {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 4;
+}
+
+.c section {
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow-y: scroll;
+    height: 550px;
+}
+
+.c h2 {
+    display: none;
+    margin: 1em;
+}
+
+.d {
+    grid-column: 1 / span 1;
+    grid-row: 3 / span 1;
+}
+
+.d section {
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.e {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 2;
+}
+
+.e section {
+    display: flex;
+    justify-content: center;
+}
+
+.e img {
+    margin: 2em;
+    border: 1px solid #9f5856;
+    border-radius: 10px;
+    height: 200px;
+}
+
+#countMap {
+    display: none;
+}
+
+#roadMap {
+    display: none;
+}
+
+.f {
+    grid-column: 1 / span 1;
+    grid-row: 4 / span 1;
+}
+
+.f section {
+    margin: 1em;
+}
+
+.g {
+    grid-column: 1 / span 1;
+    grid-row: 5 / span 1;
+}
+
+.g section {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.g img {
+    margin: 2em;
+}
+
+/* Single Page View */
+
+.singlePage {
+    display: none;
+    background-color: #E8E8E8;
+    color: #36454F;
+    font-family: 'Raleway', sans-serif;
+}
+
+.one {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 3;
+    align-items: center;
+}
+
+.one img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 50%;
+    border-radius: 10px;
+}
+
+.two {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.three {
+    grid-column: 3 / span 1;
+    grid-row: 3 /span 2;
+}
+
+/* Single Page - Tab Styling */
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#information {
+    display: none;
+    margin: 1em;
+}
+
+#details {
+    display: none;
+    margin: 1em;
+}
+
+#map {
+    display: 500px;
+}
+
+#overlay {
+    display: none;
+    position: absolute;
+    top: 460px;
+    right: 960px;
+    background-color: #9f5856;
+    padding: 1em;
+    opacity: .86;
+    font-size: small;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Button Styling Inspired from
+   https://www.w3schools.com/howto/howto_js_tabs.asp */
+
+.buttons {
+    border: 1px solid #B8B8B8;
+    border-radius: 3px;
+    background-color: #E8E8E8;
+    font-family: 'Raleway', sans-serif;
+}
+
+.singleButton {
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 8px 10px;
+    transition: 0.9s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.buttons button:hover {
+    background-color: #d28683;
+}
+
+/* *********************************** */
+/* IMG BOX STYLING */
+/* *********************************** */
+
+.photo {
+    width: 50%;
+    margin: 5% auto;
+
+}
+
+.photo img {
+    border-radius: 10px;
+}
+
+/* *********************************** */
+/* BOX ELEMENT STYLING */
+/* *********************************** */
+
+.header h1 {
+    font-size: 2em;
+    margin: 0%;
+    padding: 1em;
+}
+
+.header h2 {
+    text-align: right;
+    margin: 0%;
+    padding: 1em;
+}
+
+#countryDetails {
+    display: none;
+}
+
+#cityDetails {
+    display: none;
+}
+
+ul#countryList {
+    list-style-type: none;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+#countryList li {
+    padding: 0.2em;
+}
+
+ul#cityList {
+    list-style-type: none;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+#cityList li {
+    padding: 0.2em;
+}
+
+/* 
+   CSS SCROLLBAR CODE INSPIRED FROM
+   https://codepen.io/GhostRider/pen/GHaFw
+   Credit is due to GHOSTRIDER - though I
+   made my own touches and tweaks.
+*/
+
+.box section::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, .15);
+    background-color: #E8E8E8;
+    border-radius: 1px;
+}
+
+.box section::-webkit-scrollbar {
+    width: 7px;
+    background-color: #E8E8E8;
+}
+
+.box section::-webkit-scrollbar-thumb {
+    background-color: #9f5856;
+    border-radius: 1px;
+}
+
+
+/* ---------------------------------------- */
+
+select {
+    /* -webkit-appearance: none; */
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid;
+    border-color: #9f5856;
+    border-radius: 4px;
+    background-color: #F0F0F0;
+}
+
+label {
+    font-weight: bold;
+}
+
+option {
+    font-family: 'Raleway', sans-serif;
+}
+
+.search {
+    width: 50%;
+    border: none;
+    border-bottom: 2px solid;
+    border-color: #9f5856;
+    background-color: #F0F0F0;
+    border-radius: 4px;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* *********************************** */
+/* MEDIA QUERY */
+/* *********************************** */
+
