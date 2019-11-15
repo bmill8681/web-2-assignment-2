@@ -1,0 +1,83 @@
+/*
+colors: https://www.w3schools.com/colors/colors_brands.asp used the blues from facebook
+darkgrey
+#e9e9e9 light grey
+darkblue #3B5998
+lightblue #8B9DC3
+lighter blue #DFE3EE
+*/
+
+/*
+Source 
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout
+*/
+
+.box {
+  background-color: #e9e9e9;
+  border-style: solid; 
+  border-width: 2px;
+  border-color: darkgrey;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 100%;
+}
+
+.container {
+  display: grid;
+  grid-gap: 10px;
+  color: #444;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(100px, 3);
+}
+
+.header {
+    grid-column: 1/ span 3;
+    grid-row: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+/* grid-row 3 because eventually 2 will contain a picture */
+.loginContainer {
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 2;
+  text-align: center;
+}
+
+.button, .textbox {
+    margin-bottom: 5px;
+    margin-top: 5px;
+	border-color: #3B5998;
+	border-width: 1px;
+}
+
+@media only screen and (max-device-width: 600px)  {
+    /* change the layout */
+    
+.box {
+  background-color: #e9e9e9;
+  border-style: solid; 
+  border-width: 2px;
+  border-color: darkgrey;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 100%;
+}
+    
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .loginContainer {
+      grid-column: 1;
+      grid-row: 2 / span 1;
+    }
+    
+}
