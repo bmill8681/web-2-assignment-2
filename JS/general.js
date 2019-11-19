@@ -1,13 +1,13 @@
-//function for the humburger view  
-function myFunction() 
-{
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") 
-    {
-        x.className += " responsive";
-    } 
-    else 
-    {
-        x.className = "topnav";
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    addListeners();
+});
+
+addListeners = () => {
+    document.querySelector("body nav button").addEventListener('click', (e) => toggleNav(e));
+}
+
+toggleNav = (e) => {
+    e.preventDefault();
+    document.querySelector("body").classList.toggle("mobileNavBody");
+    document.querySelector("body nav").classList.toggle("mobileNav");
 }
