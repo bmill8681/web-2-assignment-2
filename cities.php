@@ -8,7 +8,7 @@
         $sql .= "AND CountryCodeISO = $_GET['iso'] ";
     }
 
-    $pdo = new PDO($DBSting, $user, $pass);
+    $pdo = new PDO($DBCONNSTRING, $DBUSER, $DBPASS);
     $queryResult = $pdo->query($sql);
     $result = [];
     while($row = $resultQuery->fetch()){
