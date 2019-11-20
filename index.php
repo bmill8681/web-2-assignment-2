@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/index.css">
     <script src="JS/general.js"></script>
+    <script src="JS/index.js"></script>
 </head>
 
 <body>
@@ -30,8 +31,8 @@
     <main>
         <div>
             <section>
-                <button type="submit">Login</button>
-                <button type="submit">Join</button>
+                <button id="login">Login</button>
+                <button id="join">Join</button>
                 <input type="text" class="searchbox" placeholder="Search box for photos">
             </section>
         </div>
