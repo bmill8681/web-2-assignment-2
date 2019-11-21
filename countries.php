@@ -23,10 +23,12 @@ require_once('config.inc.php');
     }
 
   // Building the SQL query
-     $sql = "SELECT ISO, ISONumeric, CountryName, Capital, CityCode, Area, Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName, PhoneCountryCode, Languages, Neighbours, CountryDescription ";
+    $sql = "SELECT ISO, ISONumeric, CountryName, Capital, CityCode, Area, Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName, PhoneCountryCode, Languages, Neighbours, CountryDescription ";
+    $sql .= "FROM Countries WHERE 1=1 ";
 
-     $sql .= "FROM Countries";
-
+    if(isset($_GET['iso'])){
+      $sql .= "AND ISO = ".$_GET['ISO']." ";
+    }
      // Connecting to the DB
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -42,7 +44,3 @@ require_once('config.inc.php');
 
     // Returning the value
     echo json_encode($result);
-
-
-?>
-
