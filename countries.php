@@ -27,7 +27,7 @@ require_once('config.inc.php');
     $sql .= "FROM Countries WHERE 1=1 ";
 
     if(isset($_GET['iso'])){
-      $sql .= "AND ISO = ".$_GET['ISO']." ";
+      $sql .= "AND ISO = ".$_GET['iso']." ";
     }
      // Connecting to the DB
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);

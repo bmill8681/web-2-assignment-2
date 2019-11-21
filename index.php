@@ -16,12 +16,16 @@
     <nav>
         <div class="logo">LOGO</div>
         <div class="navlinks">
-            <a href="Index.html" class="active">Home</a>
-            <a href="About.html">About</a>
-            <a href="Home.html">Browse</a>
-            <a href="Country.html">Countries</a>
-            <a href="#about">Cities</a>
-            <a href="Photo.html">Photos</a>
+            <a href="home.php">Home</a>
+            <a href="about.php">About</a>
+            <a href="search.php">Browse</a>
+            <a href="countryView.php">Countries</a>
+            <a href="cityView.php">Cities</a>
+            <a href="upload.php">Upload</a>
+            <a href="profile.php">Profile</a>
+            <a href="favorites.php">Favorites</a>
+            <a href="login.php" class="active">Login</a>
+            <a href="signup.php">Signup</a>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>

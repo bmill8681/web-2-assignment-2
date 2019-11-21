@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
+    <link rel="stylesheet" href="CSS/cityView.css">
     <script src="JS/general.js"></script>
+    <script src="JS/cityView.js"></script>
 </head>
 
 <body>
@@ -31,7 +33,11 @@
     </nav>
 
     <main>
-
+        <div>
+            <h1>City View </h1>
+            <button id="fetchALL">Fetch All</button>
+            <button id="fetchISO" >Fetch ISO (hardcoded to GR right now)</button>
+        </div>
     </main>
 
     <footer>
@@ -40,8 +46,6 @@
 
 
     </footer>
-
-
 
 </body>
 
