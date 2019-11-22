@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+main div {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-gap: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+#filterWrapper {
+    border: 1px solid purple;
+}
+
+#searchResults {
+    border: 1px solid red;
+}
+
+@media only screen and (max-width: 750px) {
+    main div {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 300px auto;
+        grid-gap: 5px
+    }
+    #filterWrapper, #searchResults {
+        height: 100%;
+        width: 100%;
+    }
+
+}
