@@ -3,6 +3,7 @@
     $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
     $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
 
+    // Fix this so it isn't concatenating the sql. Use a prepared statement instead.
     if(isset($_GET['title'])){
         $sql .= "AND UPPER(Title) LIKE UPPER('%".$_GET['title']."%') ";
     }
@@ -28,6 +29,8 @@
         return $data;
     }
 
+    // this will also need to be fixed using a prepared statement setup.
+    // check countries.php for an example. 
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $results = $pdo->query($sql);
     $result = array();

@@ -20,6 +20,7 @@
     $sql = "SELECT CityCode, AsciiName, CountryCodeISO, Latitude, Longitude, Population, Elevation, TimeZone ";
     $sql .= "FROM Cities WHERE 1=1 ";
     
+    // Look at countries.php to see how to fix this using a prepared statement
     if(isset($_GET['iso'])){
         $sql .= "AND CountryCodeISO = ".$_GET['iso']." ";
     }
