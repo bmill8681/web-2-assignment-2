@@ -1,12 +1,5 @@
 <?php 
     require_once './config.inc.php';
-    $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
-    $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
-
-    // Fix this so it isn't concatenating the sql. Use a prepared statement instead.
-    if(isset($_GET['title'])){
-        $sql .= "AND UPPER(Title) LIKE UPPER('%".$_GET['title']."%') ";
-    }
 
     function formatRow($cur){
         $data = [
@@ -29,14 +22,32 @@
         return $data;
     }
 
-    // this will also need to be fixed using a prepared statement setup.
-    // check countries.php for an example. 
+
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-    $results = $pdo->query($sql);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
+    $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
+    $title = null;
+    $queryResult = null;
     $result = array();
+
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+    if(isset($_GET['title'])){
+       $sql .= "AND TITLE = :title ";
+       $statement = $pdo->prepare($sql);
+       $statement->bindValue(":title", $_GET['title']);
+       $statement->execute();
+       $queryResult = $statement->fetchAll();
+       foreach($queryResult as $row){
+         array_push($result, formatRow($row)); }
+    } else {
+    // fixed using a prepared statement setup. 
+    $results = $pdo->query($sql);
     while($row = $results->fetch()){
         $formatted = formatRow($row);
         array_push($result, $formatted);
+     } 
     }
     $pdo = null;
     echo json_encode($result);
