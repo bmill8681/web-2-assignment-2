@@ -34,9 +34,9 @@
 
     // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
     if(isset($_GET['title'])){
-       $sql .= "AND TITLE = :title ";
+       $sql .= "AND TITLE LIKE :title ";
        $statement = $pdo->prepare($sql);
-       $statement->bindValue(":title", $_GET['title']);
+       $statement->bindValue(":title", "%".$_GET['title']."%");
        $statement->execute();
        $queryResult = $statement->fetchAll();
        foreach($queryResult as $row){
@@ -50,5 +50,5 @@
      } 
     }
     $pdo = null;
-    echo json_encode($result);
+    return json_encode($result);
 ?>

@@ -37,7 +37,10 @@
             <section>
                 <button id="login">Login</button>
                 <button id="join">Join</button>
-                <input type="text" class="searchbox" placeholder="Search box for photos">
+                <form class="searchbox" action="./search.php" method="get">
+                    <input type="text" name="title" placeholder="Search box for photos">
+                    <button type="submit" id="searchbutton">Search</button>
+                </form>
             </section>
         </div>
     </main>
