@@ -20,30 +20,44 @@
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Building the SQL query and initial params
+
+
+    // Building the SQL query
     $sql = "SELECT CityCode, AsciiName, CountryCodeISO, Latitude, Longitude, Population, Elevation, TimeZone ";
     $sql .= "FROM Cities WHERE 1=1 ";
+
     $iso = null;
     $queryResult = null;
     $result = array();
     
-    // Build Query
-    if (isset($_GET['citycode'])) {
-        $sql .= "AND CityCode = :citycode";
+    // cities.php query using a prepared statement
+
+    if(isset($_GET['iso'])){
+        //$sql .= "AND CountryCodeISO = ".$_GET['iso']." ";
+        $sql .= "AND CountryCodeISO = :iso ";
         $statement = $pdo->prepare($sql);
-        $statement->bindValue(":citycode", $_GET['citycode']);
+        $statement->bindValue(":iso", $_GET['iso']);
         $statement->execute();
         $queryResult = $statement->fetchAll();
+        
         foreach($queryResult as $row){
-            array_push($result, formatRow($row));
+        array_push($result, formatRow($row));
         }
     }
-    else {
+    else{
+         
         $queryResult = $pdo->query($sql);
-        while ($row = $queryResult->fetch()) {
-            array_push($result, formatRow($row));
+        
+        //pasrsing the query results
+        while($row = $queryResult->fetch()){
+            $formatted = formatRow($row);
+            array_push($result, $formatted);
         }
+        
+        
     }
+
+    $pdo = null;
 
     // Return all
     $pdo = null;

@@ -30,12 +30,14 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // Building the SQL query and set initial params
 $sql = "SELECT ISO, ISONumeric, CountryName, Capital, CityCode, Area, Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName, PhoneCountryCode, Languages, Neighbours, CountryDescription ";
 $sql .= "FROM Countries WHERE 1=1 ";
+
 $iso = null;
 $queryResult = null;
 $result = array();
 
 // Run the query
 if (isset($_GET['iso'])) {
+//     $sql .= "AND ISO = ".$_GET['iso']." ";
   $sql .= "AND ISO = :iso ";
   $statement = $pdo->prepare($sql);
   $statement->bindValue(":iso", $_GET['iso']);
