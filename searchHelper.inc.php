@@ -23,6 +23,12 @@ function formatRow($cur)
     return $data;
 }
 
+function GetBaseSQL(){
+    $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
+    $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
+    return $sql;
+}
+
 // This has to be updated.
 function formatPhotos($list){
     foreach($list as $key=>$value){
@@ -36,8 +42,7 @@ function GetPhotosByTitle($title)
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
-    $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
+    $sql = GetBaseSQL();
     $queryResult = null;
     $result = array();
     // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
@@ -59,8 +64,7 @@ function GetAllPhotos(){
     $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
-    $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
+    $sql = GetBaseSQL();
     $result = array();
     $results = $pdo->query($sql);
     while($row = $results->fetch()){
@@ -70,3 +74,13 @@ function GetAllPhotos(){
     $pdo = null;
     formatPhotos($result); 
 }
+
+function GetPhotosByCountry($country){
+
+}
+
+function GetPhotosByCity($city){
+
+}
+
+?>
