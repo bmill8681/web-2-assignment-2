@@ -31,7 +31,11 @@
     </nav>
 
     <main>
-
+        <div class="singupContainer"> 
+        <input type="text" id="username"/>
+        <input type="text" id="password"/>
+        <button type="submit" placeholder="Login"/>
+        </div>
     </main>
 
     <footer>
