@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/cityView.css">
-    <script src="JS/general.js"></script>
+    <!-- <script src="JS/general.js"></script> -->
     <script src="JS/cityView.js"></script>
 </head>
 
@@ -33,20 +33,37 @@
     </nav>
 
     <main>
-        <div>
-            <h1>City View </h1>
-            <button id="fetchALL">Fetch All</button>
-            <button id="fetchISO" >Fetch ISO (hardcoded to GR right now)</button>
+        <div class="container">
+            <div class="box a">
+                <h3>City Filters:</h3>
+            </div>
+            <div class="box b">
+                <section id="cityDetails">
+                    <h2 id="cityName"></h2>
+                    <label>Population:</label>
+                    <span id="cityPop"></span></br>
+                    <label>Elevation:</label>
+                    <span id="cityElev"></span></br>
+                    <label>Timezone:</label>
+                    <span id="cityTZone"></span></br>
+                </section>
+            </div>
+            <div class="box c">
+                C
+            </div>
+            <div class="box d">
+                <h3>Cities List</h3>
+                <ul id="cityList"></ul>
+            </div>
+            <div class="box e">
+                E
+            </div>
         </div>
     </main>
 
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-
-
-
     </footer>
-
 </body>
 
 </html>
