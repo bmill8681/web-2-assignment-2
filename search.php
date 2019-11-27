@@ -34,7 +34,7 @@
     <main>
         <div>
             <section id="filterWrapper">
-                <p>Filters</p>
+
             </section>
             <section id="searchResults">
                 <h1>Search Results</h1>
