@@ -12,12 +12,6 @@
 </head>
 
 <body>
-    <?php 
-        include 'searchHelper.inc.php';
-        if(isset($_GET['title'])){
-            // fetch from searchHelper using title. 
-        }
-    ?>
     <nav>
         <div class="logo">LOGO</div>
         <div class="navlinks">
@@ -44,6 +38,13 @@
             </section>
             <section id="searchResults">
                 <h1>Search Results</h1>
+                <?php
+                require "searchHelper.inc.php";
+                if (isset($_GET['title'])) {
+                    GetPhotosByTitle($_GET['title']);
+                } else
+                    GetAllPhotos();
+                ?>
             </section>
         </div>
     </main>
