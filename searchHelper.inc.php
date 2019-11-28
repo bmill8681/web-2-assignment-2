@@ -76,11 +76,47 @@ function GetAllPhotos(){
 }
 
 function GetPhotosByCountry($country){
+    $sql = GetBaseSQL();
+    $sql .= "AND UPPER(CountryCodeISO) LIKE UPPER(:countryiso)";
 
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $queryResult = null;
+    $result = array();
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":countryiso", "%" .$country. "%");
+    $statement->execute();
+    $queryResult = $statement->fetchAll();
+    foreach ($queryResult as $row) {
+        array_push($result, formatRow($row));
+    }
+
+    $pdo = null;
+    formatPhotos($result);
 }
 
 function GetPhotosByCity($city){
+    $sql = GetBaseSQL();
+    $sql .= "AND UPPER(CityCode) LIKE UPPER(:city)";
 
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $queryResult = null;
+    $result = array();
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":city", "%" .$city. "%");
+    $statement->execute();
+    $queryResult = $statement->fetchAll();
+    foreach ($queryResult as $row) {
+        array_push($result, formatRow($row));
+    }
+
+    $pdo = null;
+    formatPhotos($result);
 }
 
 ?>

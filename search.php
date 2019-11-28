@@ -34,7 +34,11 @@
     <main>
         <div>
             <section id="filterWrapper">
-
+                <h2>Filter By:</h2>
+                <div class="FilterButtonActive"><h3>Title</h3></div>
+                <div class="FilterButton"><h3>Country</h3></div>
+                <div class="FilterButton"><h3>City</h3></div>
+                <div id="filterInput">Input</div>
             </section>
             <section id="searchResults">
                 <h1>Search Results</h1>
