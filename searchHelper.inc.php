@@ -30,7 +30,7 @@ function GetBaseSQL(){
 }
 
 // This has to be updated.
-function formatPhotos($list){
+function FormatPhotos($list){
     foreach($list as $key=>$value){
         $title = $value['Title'];
         echo "<p>$title</p>";
@@ -57,7 +57,7 @@ function GetPhotosByTitle($title)
     }
 
     $pdo = null;
-    formatPhotos($result);
+    FormatPhotos($result);
 }
 
 function GetAllPhotos(){
@@ -72,7 +72,7 @@ function GetAllPhotos(){
         array_push($result, $formatted);
     } 
     $pdo = null;
-    formatPhotos($result); 
+    FormatPhotos($result); 
 }
 
 function GetPhotosByCountry($country){
@@ -94,7 +94,7 @@ function GetPhotosByCountry($country){
     }
 
     $pdo = null;
-    formatPhotos($result);
+    FormatPhotos($result);
 }
 
 function GetPhotosByCity($city){
@@ -116,7 +116,7 @@ function GetPhotosByCity($city){
     }
 
     $pdo = null;
-    formatPhotos($result);
+    FormatPhotos($result);
 }
 
 ?>
