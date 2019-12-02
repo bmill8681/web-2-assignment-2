@@ -1,11 +1,6 @@
 <?php
 require_once './config.inc.php';
 
-// Fix this so it isn't concatenating the sql. Use a prepared statement instead.
-if (isset($_GET['title'])) {
-    $sql .= "AND UPPER(Title) LIKE UPPER('%" . $_GET['title'] . "%') ";
-}
-
 function formatRow($cur)
 {
     $data = [
@@ -28,39 +23,100 @@ function formatRow($cur)
     return $data;
 }
 
-// this will also need to be fixed using a prepared statement setup.
-// check countries.php for an example. 
-$pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+function GetBaseSQL(){
+    $sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, ContinentCode, ";
+    $sql .= "Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors FROM imagedetails WHERE 1=1 ";
+    return $sql;
+}
 
+// This has to be updated.
+function FormatPhotos($list){
+    foreach($list as $key=>$value){
+        $title = $value['ImageID'];
+        echo "<p>$title</p>";
+    }
+}
 
-// Building the SQL query and initial params
-$sql = "SELECT ImageID, UserID, Title, Description, Latitude, Longitude, CityCode, CountryCodeISO, 
-ContinentCode, Path, Exif, ActualCreator, CreatorURL, SourceURL, Colors";
-$sql .= "FROM imagedetails WHERE 1=1";
-$iso = null;
-$queryResult = null;
-$result = array();
+function GetPhotosByTitle($title)
+{
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Build Query
-if (isset($_GET['search'])) {
-    $sql .= "AND search = :search";
+    $sql = GetBaseSQL();
+    $queryResult = null;
+    $result = array();
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+
+    $sql .= "AND UPPER(TITLE) LIKE UPPER(:title) ";
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(":search", $_GET['search']);
+    $statement->bindValue(":title", "%" .$title. "%");
     $statement->execute();
     $queryResult = $statement->fetchAll();
     foreach ($queryResult as $row) {
         array_push($result, formatRow($row));
     }
-} else {
-    $queryResult = $pdo->query($sql);
-    while ($row = $queryResult->fetch()) {
-        array_push($result, formatRow($row));
-    }
+
+    $pdo = null;
+    FormatPhotos($result);
 }
 
-// Return all
-$pdo = null;
-echo json_encode($result);
+function GetAllPhotos(){
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = GetBaseSQL();
+    $result = array();
+    $results = $pdo->query($sql);
+    while($row = $results->fetch()){
+        $formatted = formatRow($row);
+        array_push($result, $formatted);
+    } 
+    $pdo = null;
+    FormatPhotos($result); 
+}
+
+function GetPhotosByCountry($country){
+    $sql = GetBaseSQL();
+    $sql .= "AND UPPER(CountryCodeISO) LIKE UPPER(:countryiso)";
+
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $queryResult = null;
+    $result = array();
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":countryiso", "%" .$country. "%");
+    $statement->execute();
+    $queryResult = $statement->fetchAll();
+    foreach ($queryResult as $row) {
+        array_push($result, formatRow($row));
+    }
+
+    $pdo = null;
+    FormatPhotos($result);
+}
+
+function GetPhotosByCity($city){
+    $sql = GetBaseSQL();
+    $sql .= "AND UPPER(CityCode) LIKE UPPER(:city)";
+
+    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $queryResult = null;
+    $result = array();
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":city", "%" .$city. "%");
+    $statement->execute();
+    $queryResult = $statement->fetchAll();
+    foreach ($queryResult as $row) {
+        array_push($result, formatRow($row));
+    }
+
+    $pdo = null;
+    FormatPhotos($result);
+}
 
 ?>

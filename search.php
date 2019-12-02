@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/search.css">
     <script src="JS/general.js"></script>
+    <script src="JS/search.js"></script>
 </head>
 
 <body>
@@ -34,10 +35,23 @@
     <main>
         <div>
             <section id="filterWrapper">
-                <p>Filters</p>
+                <h2>Filter By:</h2>
+                <div class="FilterClass FilterButtonActive"><h3>Title</h3></div>
+                <div class="FilterClass FilterButton"><h3>Country</h3></div>
+                <div class="FilterClass FilterButton"><h3>City</h3></div>
+                <div id="filterInput">Input</div>
             </section>
             <section id="searchResults">
                 <h1>Search Results</h1>
+                <!-- Actual PHP stuff -->
+                <?php
+                require "searchHelper.inc.php";
+                if (isset($_GET['title'])) {
+                    GetPhotosByTitle($_GET['title']);
+                } else
+                    GetAllPhotos();
+                ?>
+                <!--                        -->
             </section>
         </div>
     </main>

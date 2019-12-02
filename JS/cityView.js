@@ -7,24 +7,24 @@ loadData = () => {
 
     window.addEventListener('load', () => {
         if (localStorage.getItem("cityData") === null) {
-            fetch (cityData)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    return Promise.reject({
-                        status: response.status,
-                        statusText: response.statusTest
-                    });
-                }
-            })
-            .then(data => {
-                localStorage.setItem('cityData', JSON.stringify(data))
-            })
-            .then(data => {
-                data = localStorage.getItem('cityData');
-                displayCityList(JSON.parse(data));
-            });
+            fetch(cityData)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        return Promise.reject({
+                            status: response.status,
+                            statusText: response.statusTest
+                        });
+                    }
+                })
+                .then(data => {
+                    localStorage.setItem('cityData', JSON.stringify(data))
+                })
+                .then(data => {
+                    data = localStorage.getItem('cityData');
+                    displayCityList(JSON.parse(data));
+                });
         } else {
             let data = localStorage.getItem('cityData');
             displayCityList(JSON.parse(data));
@@ -49,12 +49,9 @@ displayCityList = (data) => {
 }
 
 displayCityInfo = (data) => {
-    console.log(data);
     let cityList = document.querySelectorAll('#cityList li');
     cityList.forEach(city => {
         city.addEventListener('click', e => {
-            
-
             data.forEach(matchCity => {
                 if (city.textContent === matchCity.AsciiName) {
                     document.getElementById('cityDetails').style.display = "block";
@@ -62,9 +59,19 @@ displayCityInfo = (data) => {
                     document.getElementById('cityPop').textContent = matchCity.Population;
                     document.getElementById('cityElev').textContent = matchCity.Elevation;
                     document.getElementById('cityTZone').textContent = matchCity.TimeZone;
+                    displayMap(matchCity);
                 }
-            })
-        })
-    })
+            });
+        });
+    });
 }
 
+displayMap = (city) => {
+    console.log(city);
+    let map = document.getElementById('map');
+    let mapString = "https://maps.googleapis.com/maps/api/staticmap?center=" +
+        city.AsciiName + "&zoom=6&size=450x450&markers=" + city.AsciiName +
+        "&key=" + "AIzaSyC8oREs1CiabLmll1hucS5o9NZklCYiLdI";
+    map.setAttribute('src', mapString);
+    map.style.display = 'block';
+}

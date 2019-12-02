@@ -49,14 +49,17 @@
                 </section>
             </div>
             <div class="box c">
-                C
+                <?php
+                require_once 'searchHelper.inc.php';
+                GetPhotosByCity("5913490");
+                ?>
             </div>
             <div class="box d">
                 <h3>Cities List</h3>
                 <ul id="cityList"></ul>
             </div>
             <div class="box e">
-                E
+                <img id="map" src="" alt="">
             </div>
         </div>
     </main>
@@ -64,6 +67,7 @@
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
     </footer>
+
 </body>
 
 </html>

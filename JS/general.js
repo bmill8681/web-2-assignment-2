@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     addListeners();
 });
-
 addListeners = () => {
     document.querySelector("body nav button").addEventListener('click', (e) => toggleNav(e));
 }
