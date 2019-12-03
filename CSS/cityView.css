@@ -24,10 +24,6 @@
     grid-row: 1;
 }
 
-#cityDetails {
-    display: none;
-}
-
 .c {
     grid-column: 3;
     grid-row: 1 / span 2;

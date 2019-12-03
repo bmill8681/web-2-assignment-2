@@ -1,3 +1,15 @@
+<?php 
+    require_once 'searchHelper.inc.php';
+    
+    function printPicture($CityCode) {
+        $paths = GetPhotosByCity($CityCode);
+        foreach($paths as $p) {
+            echo '<img src="images/square150/' .$p['Path']. '">';
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/cityView.css">
-    <!-- <script src="JS/general.js"></script> -->
+    <script src="JS/general.js"></script>
     <script src="JS/cityView.js"></script>
 </head>
 
@@ -35,28 +47,26 @@
     <main>
         <div class="container">
             <div class="box a">
-                <h3>City Filters:</h3>
+                <h3>Country Filters:</h3>
             </div>
             <div class="box b">
-                <section id="cityDetails">
-                    <h2 id="cityName"></h2>
-                    <label>Population:</label>
-                    <span id="cityPop"></span></br>
-                    <label>Elevation:</label>
-                    <span id="cityElev"></span></br>
-                    <label>Timezone:</label>
-                    <span id="cityTZone"></span></br>
-                </section>
+                <?php 
+                    if (isset($_GET['CityCode']) && $_GET['CityCode']) {
+                        //print city info
+                    }
+                ?>
             </div>
             <div class="box c">
-                <?php
-                require_once 'searchHelper.inc.php';
-                GetPhotosByCity("5913490");
+            <?php
+                if (isset($_GET['CityCode']) && $_GET['CityCode']) {
+                    $CityCode = $_GET['CityCode'];
+                    printPicture($CityCode);
+                }
                 ?>
             </div>
             <div class="box d">
-                <h3>Cities List</h3>
-                <ul id="cityList"></ul>
+                <h3>Countries List</h3>
+
             </div>
             <div class="box e">
                 <img id="map" src="" alt="">

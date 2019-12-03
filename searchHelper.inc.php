@@ -30,12 +30,12 @@ function GetBaseSQL(){
 }
 
 // This has to be updated.
-function FormatPhotos($list){
-    foreach($list as $key=>$value){
-        $title = $value['ImageID'];
-        echo "<p>$title</p>";
-    }
-}
+// function FormatPhotos($list){
+//     foreach($list as $key=>$value){
+//         $title = $value['ImageID'];
+//         echo "<p>$title</p>";
+//     }
+// }
 
 function GetPhotosByTitle($title)
 {
@@ -116,7 +116,8 @@ function GetPhotosByCity($city){
     }
 
     $pdo = null;
-    FormatPhotos($result);
+    return  $result;
+    // FormatPhotos($result);
 }
 
 ?>
