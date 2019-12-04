@@ -50,10 +50,18 @@
                 <!-- Actual PHP stuff -->
                 <?php
                 require "searchHelper.inc.php";
+                $photos = null;
                 if (isset($_GET['title'])) {
-                    GetPhotosByTitle($_GET['title']);
-                } else
-                    GetAllPhotos();
+                    $photos = GetPhotosByTitle($_GET['title']);
+                } else{
+                    $photos = GetAllPhotos();
+                }
+                foreach($photos as $key=>$photo){
+                    echo "<div class='photoWrapper'><section class='photoLeft'>";
+                    echo "<img src='./Images/square150/".$photo['Path']."' /><h2>".$photo['Title']."</h2>";
+                    echo "<p>".$photo['ActualCreator']."</p></section>";
+                    echo "<section class='photoRight'><button>View</button><button>Add To Favorites</button></section>";
+                }
                 ?>
                 <!--                        -->
             </section>
