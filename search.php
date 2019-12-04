@@ -8,18 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/search.css">
-    <script src="JS/general.js"></script>
+<!--    <script src="JS/general.js"></script>-->
+    <script src="JS/search.js"></script>
 </head>
 
 <body>
-    <nav>
+    <nav class="nav">
         <div class="logo">LOGO</div>
         <div class="navlinks">
             <a href="home.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <a href="upload.php">Upload</a>
             <a href="profile.php">Profile</a>
             <a href="favorites.php">Favorites</a>
@@ -35,13 +36,14 @@
         <div>
             <section id="filterWrapper">
                 <h2>Filter By:</h2>
-                <div class="FilterButtonActive"><h3>Title</h3></div>
-                <div class="FilterButton"><h3>Country</h3></div>
-                <div class="FilterButton"><h3>City</h3></div>
+                <div class="FilterClass FilterButtonActive"><h3>Title</h3></div>
+                <div class="FilterClass FilterButton"><h3>Country</h3></div>
+                <div class="FilterClass FilterButton"><h3>City</h3></div>
                 <div id="filterInput">Input</div>
             </section>
             <section id="searchResults">
                 <h1>Search Results</h1>
+                <!-- Actual PHP stuff -->
                 <?php
                 require "searchHelper.inc.php";
                 if (isset($_GET['title'])) {
@@ -49,12 +51,16 @@
                 } else
                     GetAllPhotos();
                 ?>
+                <!--                        -->
             </section>
         </div>
     </main>
 
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
+
+
+
     </footer>
 
 

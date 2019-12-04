@@ -11,3 +11,4 @@ toggleNav = (e) => {
     document.querySelector("body").classList.toggle("mobileNavBody");
     document.querySelector("body nav").classList.toggle("mobileNav");
 }
+

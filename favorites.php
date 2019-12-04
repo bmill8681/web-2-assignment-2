@@ -11,14 +11,14 @@
 </head>
 
 <body>
-    <nav>
+    <nav class="nav">
         <div class="logo">LOGO</div>
         <div class="navlinks">
             <a href="home.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <a href="upload.php">Upload</a>
             <a href="profile.php">Profile</a>
             <a href="favorites.php">Favorites</a>
@@ -34,11 +34,8 @@
 
     </main>
 
-    <footer>
+      <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-
-
-
     </footer>
 
 
