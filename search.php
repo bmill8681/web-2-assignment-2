@@ -46,21 +46,51 @@
                 </div>
             </section>
             <section id="searchResults">
-                <h1>Search Results</h1>
                 <!-- Actual PHP stuff -->
                 <?php
                 require "searchHelper.inc.php";
                 $photos = null;
                 if (isset($_GET['title'])) {
-                    $photos = GetPhotosByTitle($_GET['title']);
-                } else{
+                    $photoTitle = $_GET['title'];
+                    trim($photoTitle, " ");
+                    if($photoTitle == ""){
+                        $photos = GetAllPhotos();
+                    }
+                    else{
+                        $photos = GetPhotosByTitle($photoTitle);
+                    }
+                } 
+                else if (isset($_GET['city'])){
+                    $photoCity = $_GET['city'];
+                    trim($photoCity, " ");
+                    if($photoCity == ""){
+                        $photos = GetAllPhotos();
+                    }
+                    else{
+                        $photos = GetPhotosByCity($photoCity);
+                    }
+                }
+                else if (isset($_GET['country'])){
+                    $photoCountry = $_GET['country'];
+                    trim($photoCountry, " ");
+                    if($photoCountry == ""){
+                        $photos = GetAllPhotos();
+                    }
+                    else{
+                        $photos = GetPhotosByCountry($photoCountry);
+                    }
+                }
+                else{
                     $photos = GetAllPhotos();
                 }
                 foreach($photos as $key=>$photo){
-                    echo "<div class='photoWrapper'><section class='photoLeft'>";
-                    echo "<img src='./Images/square150/".$photo['Path']."' /><h2>".$photo['Title']."</h2>";
-                    echo "<p>".$photo['ActualCreator']."</p></section>";
-                    echo "<section class='photoRight'><button>View</button><button>Add To Favorites</button></section>";
+                    echo "<div class='PhotoWrapper'>"; 
+                    echo "<section class='PhotoLeft'>";
+                    echo "<img src='./Images/square150/".$photo['Path']."' alt='".$photo['Title']."' />";
+                    echo "<div><h2>".$photo['Title']."</h2>";
+                    echo "<p>".$photo['ActualCreator']."</p>";
+                    echo "<section class='PhotoButtons'><button>View</button><button>Add To Favorites</button></section></div></section>";
+                    echo "</div>";
                 }
                 ?>
                 <!--                        -->

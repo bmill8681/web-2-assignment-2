@@ -73,7 +73,7 @@ setInputFilter = id => {
                 return 1;
             });
             let select = document.createElement("select");
-            select.setAttribute("name", "country");
+            select.setAttribute("name", "city");
             cities.forEach(cur => {
                 let option = document.createElement("option");
                 option.value = cur.CityCode;
