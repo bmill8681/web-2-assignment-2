@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: login.php");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +21,7 @@
     <nav>
         <div class="logo">LOGO</div>
         <div class="navlinks">
-            <a href="home.php">Home</a>
+            <a href="home.php" class="active">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
@@ -22,7 +29,7 @@
             <a href="upload.php">Upload</a>
             <a href="profile.php">Profile</a>
             <a href="favorites.php">Favorites</a>
-            <a href="login.php" class="active">Login</a>
+            <a href="login.php"Login</a>
             <a href="signup.php">Signup</a>
         </div>
         <button class="hamburger">
@@ -31,14 +38,11 @@
     </nav>
 
     <main>
-
+        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
     </main>
 
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-
-
-
     </footer>
 
 

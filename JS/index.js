@@ -8,9 +8,9 @@ addListeners = () => {
 }
 
 login = e => {
-    console.log("Login Clicked!");
+    window.location.href = "login.php";
 }
 
 join = e => {
-    console.log("Join Clicked!")
+    window.location.href = "signup.php";
 }

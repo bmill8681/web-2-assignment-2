@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    session_unset();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -44,9 +48,6 @@
 
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-
-
-
     </footer>
 
 
