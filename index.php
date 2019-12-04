@@ -37,7 +37,7 @@
                 <button id="login">Login</button>
                 <button id="join">Join</button>
                 <form class="searchbox" action="./search.php" method="get">
-                    <input type="text" name="title" placeholder="Search box for photos">
+                    <input type="text" name="title" placeholder="Search Photos" />
                     <button type="submit" id="searchbutton">Search</button>
                 </form>
             </section>

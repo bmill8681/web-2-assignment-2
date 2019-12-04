@@ -35,10 +35,15 @@
         <div>
             <section id="filterWrapper">
                 <h2>Filter By:</h2>
-                <div class="FilterClass FilterButtonActive"><h3>Title</h3></div>
-                <div class="FilterClass FilterButton"><h3>Country</h3></div>
-                <div class="FilterClass FilterButton"><h3>City</h3></div>
-                <div id="filterInput">Input</div>
+                <button class="FilterClass FilterButtonActive" id="titleFilter">Title</button>
+                <button class="FilterClass FilterButton" id="countryFilter">Country</button>
+                <button class="FilterClass FilterButton" id="cityFilter">City</button>
+                <div id="filterInput">
+                    <form action="./search.php" method="get">
+                        <input type="text" name="title" placeholder="Search By Title (Leave blank for all photos)" />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
             </section>
             <section id="searchResults">
                 <h1>Search Results</h1>
