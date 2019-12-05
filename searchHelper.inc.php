@@ -30,12 +30,12 @@ function GetBaseSQL(){
 }
 
 // This has to be updated.
-function FormatPhotos($list){
-    foreach($list as $key=>$value){
-        $title = $value['Title'];
-        echo "<p>$title</p>";
-    }
-}
+// function FormatPhotos($list){
+//     foreach($list as $key=>$value){
+//         $title = $value['ImageID'];
+//         echo "<p>$title</p>";
+//     }
+// }
 
 function GetPhotosByTitle($title)
 {

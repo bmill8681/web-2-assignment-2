@@ -1,3 +1,15 @@
+<?php 
+    require_once 'searchHelper.inc.php';
+    
+    function printPicture($CityCode) {
+        $paths = GetPhotosByCity($CityCode);
+        foreach($paths as $p) {
+            echo '<img src="images/square150/' .$p['Path']. '">';
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -32,18 +44,37 @@
     </nav>
 
     <main>
-        <div>
-            <h1>City View </h1>
-            <button id="fetchALL">Fetch All</button>
-            <button id="fetchISO" >Fetch ISO (hardcoded to GR right now)</button>
+        <div class="container">
+            <div class="box a">
+                <h3>Country Filters:</h3>
+            </div>
+            <div class="box b">
+                <?php 
+                    if (isset($_GET['CityCode']) && $_GET['CityCode']) {
+                        //print city info
+                    }
+                ?>
+            </div>
+            <div class="box c">
+            <?php
+                if (isset($_GET['CityCode']) && $_GET['CityCode']) {
+                    $CityCode = $_GET['CityCode'];
+                    printPicture($CityCode);
+                }
+                ?>
+            </div>
+            <div class="box d">
+                <h3>Countries List</h3>
+
+            </div>
+            <div class="box e">
+                <img id="map" src="" alt="">
+            </div>
         </div>
     </main>
 
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-
-
-
     </footer>
 
 </body>

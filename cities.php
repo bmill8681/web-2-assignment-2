@@ -59,6 +59,6 @@
 
     $pdo = null;
 
-    // Returning the value
-    echo json_encode($result);
-?>
+    // Return all
+    $pdo = null;
+    echo json_encode($result);    
