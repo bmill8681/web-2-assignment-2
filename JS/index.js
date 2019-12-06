@@ -8,10 +8,11 @@ addIndexListeners = () => {
 }
 
 login = e => {
-    console.log("Login Clicked!");
+    window.location.href = "login.php";
 }
 
 join = e => {
+<<<<<<< HEAD
     console.log("Join Clicked!")
 }
 
@@ -19,3 +20,7 @@ join = e => {
 //     e.preventDefault();
 
 // }
+=======
+    window.location.href = "signup.php";
+}
+>>>>>>> 8f19e01c00141dd6a2180d629dbd6868d1c935ea
