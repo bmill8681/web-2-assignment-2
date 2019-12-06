@@ -16,7 +16,9 @@ function displayPic()
         //print_r($picDetails);
         foreach($picDetails as $p)
         {   
-            echo "<img class='picInfo' src='https://storage.googleapis.com/photosasg02/medium640/" . $p['Path'] ."'>";
+            $path = $p['Path'];
+            $path = strtolower( $path );
+            echo "<img class='picInfo' src='https://storage.googleapis.com/photosasg02/medium640/" . $path ."'>";
         }
     }
 }

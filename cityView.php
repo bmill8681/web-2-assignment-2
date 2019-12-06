@@ -43,8 +43,10 @@ function displayPicsForCity()
         //        print_r($photo);
 
         foreach ($photo as $p) {
+            $path = $p['Path'];
+            $path = strtolower( $path );
             //            echo "<a  href='single-photo.php?imageid=" . $p['ImageID'] ". "&cityid=". $p['CityCode']. "&iso=" . $p['CountryCodeISO']. "'> <img src='case-travel-master/images/square150/" . $p['Path'] . "' /> </a>";
-            echo "<a  href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='https://storage.googleapis.com/photosasg02/square150/" . $p['Path'] . "' /> </a>";
+            echo "<a  href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "' /> </a>";
         }
     }
 }

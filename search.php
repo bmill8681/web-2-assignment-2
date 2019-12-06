@@ -85,9 +85,11 @@
                     $photos = GetAllPhotos();
                 }
                 foreach($photos as $key=>$photo){
+                    $path = $photo['Path'];
+                    $path = strtolower( $path );
                     echo "<div class='PhotoWrapper'>"; 
                     echo "<section class='PhotoLeft'>";
-                    echo "<a href='./single-photo.php?imageid=".$photo['ImageID']."'><img src='https://storage.googleapis.com/photosasg02/square150/".$photo['Path']."' alt='".$photo['Title']."' /></a>";
+                    echo "<a href='./single-photo.php?imageid=".$photo['ImageID']."'><img src='https://storage.googleapis.com/photosasg02/square150/".$path."' alt='".$photo['Title']."' /></a>";
                     echo "<div><h2>".$photo['Title']."</h2>";
                     echo "<p>".$photo['ActualCreator']."</p>";
                     echo "<section class='PhotoButtons'><a href='./single-photo.php?imageid=".$photo['ImageID']."'>View</a><button>Add To Favorites</button></section></div></section>";
