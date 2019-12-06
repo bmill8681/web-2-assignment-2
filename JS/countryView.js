@@ -44,27 +44,15 @@ document.addEventListener('DOMContentLoaded' , function()
         for(let c of data)
         {
             let list = document.querySelector(".listCountries");
-           
             let a = document.createElement("a");
-           
+            let li = document.createElement('li');
+            
             a.setAttribute('href' , "countryView.php?iso=" + c.ISO);
+            a.textContent = c.CountryName;
             eCountries.push(c);
             
-            let li = document.createElement('li');
-         
-            //setup the attribute for the list
-            li.setAttribute('iso', c.iso);
-            li.setAttribute('name', c.CountryName);
-            
-          
-            li.style.textAlign = "center";
-            li.style.listStyleType = "none";
-            li.style.padding = "5px";
-          
-            li.textContent = c.CountryName;
-   
-            list.appendChild(a);
-             a.appendChild(li);
+            list.appendChild(li);
+            li.appendChild(a);
              
         }
     }

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    session_unset();
+    // session_unset();
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,10 +25,19 @@
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
             <a href="cityView.php">Cities</a>
-            <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a>
+            <!-- <a href="profile.php">Profile</a>
+            <a href="favorites.php">Favorites</a> -->
             <a href="login.php" class="active">Login</a>
             <a href="signup.php">Signup</a>
+            <?php 
+                if(isset($_SESSION['id'])){
+                    echo "<a href='logout.php'>Log Out</a>";
+                } else {
+                    echo "<a href='profile.php'>Profile</a>";
+                    echo "<a href='favorites.php'>Favorites</a>";
+                }
+            
+            ?>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>

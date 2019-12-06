@@ -35,13 +35,9 @@ function displayCities()
 {
     if (isset($_GET["iso"])) {
         $iso = $_GET["iso"];
-
         $cities = cityByCountry($iso);
-
-
-        //         echo "<nav>";
         foreach ($cities as $c) {
-            echo "<p style='margin: 3px;text-align: center;'><a href='cityView.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></p>";
+            echo "<li><a href='cityView.php?id=".$c["CityCode"]."'>".$c["AsciiName"]."</a></li>";
         }
     }
 }
@@ -56,8 +52,9 @@ function displayPhotos()
 
         foreach ($photo as $p) {
             $path = $p['Path'];
-            $path = strtolower( $path );
-            echo "<a  style='margin: 20px' href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "' /> </a>";
+            $path = strtolower($path);
+            echo "<a href='single-photo.php?imageid=".$p['ImageID']."'>";
+            echo "<img src='https://storage.googleapis.com/photosasg02/square150/".$path."'/></a>";
         }
     }
 }
@@ -99,17 +96,12 @@ function displayPhotos()
 
     <main>
         <div class="container">
-
-            <div class="countryFilter">
-
+            <div class="filters">
                 <h4>Country Filters</h4>
                 <fieldset>
-
                     <input type="text" class="search" placeholder="Country Name" list="filterList">
-                    <datalist id="filterList">
-                    </datalist>
+                    <datalist id="filterList"></datalist>
                 </fieldset>
-
                 <fieldset>
                     <select class="continent">Continent List
                         <option value="">Select Continent</option>
@@ -120,52 +112,32 @@ function displayPhotos()
                         <option value="AS">Asia</option>
                         <option value="AN">Antarctica</option>
                         <option value="OC">Oceania</option>
-
-
-
                     </select>
                 </fieldset>
-
                 <fieldset>
                     <input type="radio" class="click"><span> Countries with Images</span>
                 </fieldset>
-
-
                 <button type="submit" class="reset">Reset</button>
-
-
-
-
-
             </div>
 
             <div class="countryList">
-                <h4 style="margin: 10px;">Country List</h4>
-                <section>
-                    <ul class="listCountries" role="listbox">
-                    </ul>
-
-                </section>
-
+                <h4>Country List</h4>
+                <ul class="listCountries" role="listbox"></ul>
             </div>
             <div class="description">
                 <h4>Description</h4>
                 <?php printDescription(); ?>
             </div>
             <div class="cityList">
-
                 <h4>City List</h4>
-
-                <?php displayCities(); ?>
-
+                <ul><?php displayCities(); ?></ul>
             </div>
-
             <div class="photo">
-                <h4 style="margin-bottom: 2em;">Photo</h4>
-                <?php displayPhotos(); ?>
+                <h4>Photo</h4>
+                <section>
+                    <?php displayPhotos(); ?>
+                </section>
             </div>
-
-
         </div>
     </main>
 
