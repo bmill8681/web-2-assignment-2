@@ -87,10 +87,10 @@
                 foreach($photos as $key=>$photo){
                     echo "<div class='PhotoWrapper'>"; 
                     echo "<section class='PhotoLeft'>";
-                    echo "<img src='./Images/square150/".$photo['Path']."' alt='".$photo['Title']."' />";
+                    echo "<a href='./single-photo.php?imageid=".$photo['ImageID']."'><img src='./Images/square150/".$photo['Path']."' alt='".$photo['Title']."' /></a>";
                     echo "<div><h2>".$photo['Title']."</h2>";
                     echo "<p>".$photo['ActualCreator']."</p>";
-                    echo "<section class='PhotoButtons'><button>View</button><button>Add To Favorites</button></section></div></section>";
+                    echo "<section class='PhotoButtons'><a href='./single-photo.php?imageid=".$photo['ImageID']."'>View</a><button>Add To Favorites</button></section></div></section>";
                     echo "</div>";
                 }
                 ?>

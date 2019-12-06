@@ -67,6 +67,7 @@ function GetAllPhotos(){
     $sql = GetBaseSQL();
     $result = array();
     $results = $pdo->query($sql);
+    $result = array();
     while($row = $results->fetch()){
         $formatted = formatRow($row);
         array_push($result, $formatted);
