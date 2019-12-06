@@ -23,7 +23,7 @@
         if ($password != $confirmpassword) {
             loginError("Passwords do not match. Try Again.");
         } else {
-            $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+            $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             if (emailAlreadyExists($email, $pdo)) {
                 loginError("$email already exists. Try Again.");

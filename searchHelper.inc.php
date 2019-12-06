@@ -39,7 +39,7 @@ function FormatPhotos($list){
 
 function GetPhotosByTitle($title)
 {
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = GetBaseSQL();
@@ -61,7 +61,7 @@ function GetPhotosByTitle($title)
 }
 
 function GetAllPhotos(){
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = GetBaseSQL();
@@ -80,7 +80,7 @@ function GetPhotosByCountry($country){
     $sql = GetBaseSQL();
     $sql .= "AND UPPER(CountryCodeISO) LIKE UPPER(:countryiso)";
 
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $queryResult = null;
@@ -102,7 +102,7 @@ function GetPhotosByCity($city){
     $sql = GetBaseSQL();
     $sql .= "AND UPPER(CityCode) LIKE UPPER(:city)";
 
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $queryResult = null;

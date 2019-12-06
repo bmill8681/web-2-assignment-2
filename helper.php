@@ -33,7 +33,7 @@ function getImages()
 function printSingleCountry($iso){
    try {
        
-       $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
+       $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
 //       
 //       $sql = 'SELECT ISO, ISONumeric, CountryName, Capital, CityCode, Area, Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName, PhoneCountryCode, Languages, Neighbours, CountryDescription FROM countries WHERE ISO=?';
        
@@ -58,7 +58,7 @@ function getAllCountries()
 {
     try{
 
-           $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
+           $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
         
            // Building the SQL query and set initial params
             $sql = getCountries();
@@ -78,7 +78,7 @@ function getAllCities()
 {
         try{
 
-           $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
+           $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
         
             
            // Building the SQL query and set initial param
@@ -105,7 +105,7 @@ function getAllCities()
 
   function cityByCountry($iso){
    try {
-       $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
+       $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
        
 //       $sql = 'SELECT CityCode, AsciiName, CountryCodeISO, Latitude, Longitude, Population, Elevation, TimeZone FROM cities WHERE CountryCodeISO=?';
        
@@ -127,7 +127,7 @@ function getAllCities()
 function cityByID($id)
 {
       try {
-       $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
+       $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
        
 //       $sql = 'SELECT CityCode, AsciiName, CountryCodeISO, Latitude, Longitude, Population, Elevation, TimeZone FROM cities WHERE CityCode=?';
           
@@ -151,7 +151,7 @@ function cityByID($id)
 function allPhotos()
 {
     try{
-        $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
         
 //        $sql = "SELECT CountryCodeISO FROM imagedetails WHERE 1=1 ";
         
@@ -177,7 +177,7 @@ function allPhotos()
 function photosByCountry($iso)
 {
       try{
-        $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
         
 //         $sql = 'SELECT ImageID, UserID, CityCode, Title, Latitude, Longitude, CountryCodeISO, Path, Exif FROM imagedetails WHERE CountryCodeISO=?';
           
@@ -201,7 +201,7 @@ function detailForSinglePhoto($imageId)
 {
     try{
         
-        $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
         
         
             $sql = getImages();
@@ -226,7 +226,7 @@ function pictureForSingleCity($imageId)
 {
        try{
         
-        $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
         
 //        $sql = 'select Title, ImageID , UserID, Description, Exif, Latitude, Longitude, CityCode, CountryCodeISO, Path from imagedetails where CityCode=?';
            
@@ -251,7 +251,7 @@ function printNameOfCountry($iso)
 {
        try{
         
-        $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
         
         $sql = 'select CountryName from countries where ISO =?';
            
@@ -276,7 +276,7 @@ function printNameOfCities($Cityid)
 {
       try{
         
-        $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
         
         $sql = 'select AsciiName from cities Where CityCode=?';
            

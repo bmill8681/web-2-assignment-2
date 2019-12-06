@@ -21,7 +21,7 @@
     }
 
     function validateLogin($email, $password) {
-        $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+        $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT UserID, Password FROM userslogin WHERE UserName=?";
         $stmt = $pdo->prepare($sql);

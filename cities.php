@@ -17,7 +17,7 @@
     }
 
     // Connecting to the DB
-    $pdo = new PDO(DBCONNSTRING, DBUSER, DBPASS);
+    $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
