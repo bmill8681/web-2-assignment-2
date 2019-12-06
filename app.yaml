@@ -1,0 +1,22 @@
+runtime: php55
+api_version: 1
+
+env_variables:
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "root123"
+  MYSQL_DSN: mysql:dbname=travel;unix_socket=/cloudsql/asg02v3:us-central1:travel
+beta_settings:
+  cloud_sql_instances: "asg02v3:us-central1:travel"
+
+handlers:
+- url: /CSS
+  static_dir: CSS
+- url: /(.+\.(gif|png|jpg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg)$
+- url: /CSS/
+  script: /CSS/
+- url: /(.+\.php)$
+  script: \1
+- url: /.*
+  script: index.php
