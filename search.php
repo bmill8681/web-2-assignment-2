@@ -96,7 +96,6 @@
                     echo "</div>";
                 }
                 ?>
-                <!--                        -->
             </section>
         </div>
     </main>
