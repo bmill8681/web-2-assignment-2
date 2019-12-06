@@ -44,7 +44,7 @@
                     $_SESSION["username"] = $email;                            
 
                     // Redirect user to welcome page
-                    header("location: home.php");                
+                    header("location: index.php");                
                 } else {
                     loginError("Error with signing up. Please try again.");
                 }

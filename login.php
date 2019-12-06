@@ -37,7 +37,7 @@
                     $_SESSION["username"] = $email;                            
 
                     // Redirect user to welcome page
-                    header("location: home.php");
+                    header("location: index.php");
                 }
             }
             loginError("Incorrect password");
