@@ -55,7 +55,7 @@ function displayPhotos()
         //        print_r($photo);
 
         foreach ($photo as $p) {
-            echo "<a  style='margin: 20px' href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='./images/square150/" . $p['Path'] . "' /> </a>";
+            echo "<a  style='margin: 20px' href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='https://storage.googleapis.com/photosasg02/square150/" . $p['Path'] . "' /> </a>";
         }
     }
 }
