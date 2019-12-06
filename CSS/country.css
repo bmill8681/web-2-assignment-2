@@ -122,8 +122,18 @@
     border-left: 1px solid grey;
     border-right: 1px solid grey;
     border-bottom: none;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+}
+
+.cityList a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cityList a:visited {
+    color: rgb(107, 66, 219);
 }
 
 /* Photo List Style - Desktop */

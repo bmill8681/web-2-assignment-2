@@ -115,9 +115,9 @@ function displayPhotos()
                     </select>
                 </fieldset>
                 <fieldset>
-                    <input type="radio" class="click"><span> Countries with Images</span>
+                    <input type="checkbox" class="imageOnly"><span> Countries with Images</span></input>
                 </fieldset>
-                <button type="submit" class="reset">Reset</button>
+                <button class="reset">Reset</button>
             </div>
 
             <div class="countryList">
