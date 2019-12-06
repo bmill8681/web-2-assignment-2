@@ -37,7 +37,7 @@ function displayCities()
         $iso = $_GET["iso"];
         $cities = cityByCountry($iso);
         foreach ($cities as $c) {
-            echo "<li><a href='cityView.php?id=".$c["CityCode"]."'>".$c["AsciiName"]."</a></li>";
+            echo "<li><a href='cityView.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></li>";
         }
     }
 }
@@ -53,8 +53,8 @@ function displayPhotos()
         foreach ($photo as $p) {
             $path = $p['Path'];
             $path = strtolower($path);
-            echo "<a href='single-photo.php?imageid=".$p['ImageID']."'>";
-            echo "<img src='https://storage.googleapis.com/photosasg02/square150/".$path."'/></a>";
+            echo "<a href='single-photo.php?imageid=" . $p['ImageID'] . "'>";
+            echo "<img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "'/></a>";
         }
     }
 }
@@ -98,11 +98,12 @@ function displayPhotos()
         <div class="container">
             <div class="filters">
                 <h4>Country Filters</h4>
-                <fieldset>
+                <section class="filterList">
+                    <!-- <fieldset> -->
                     <input type="text" class="search" placeholder="Country Name" list="filterList">
                     <datalist id="filterList"></datalist>
-                </fieldset>
-                <fieldset>
+                    <!-- </fieldset> -->
+                    <!-- <fieldset> -->
                     <select class="continent">Continent List
                         <option value="">Select Continent</option>
                         <option value="NA">North America</option>
@@ -113,11 +114,12 @@ function displayPhotos()
                         <option value="AN">Antarctica</option>
                         <option value="OC">Oceania</option>
                     </select>
-                </fieldset>
-                <fieldset>
-                    <input type="checkbox" class="imageOnly"><span> Countries with Images</span></input>
-                </fieldset>
-                <button class="reset">Reset</button>
+                    <!-- </fieldset> -->
+                    <!-- <fieldset> -->
+                    <div><input type="checkbox" class="imageOnly"> Countries with Images</div>
+                    <!-- </fieldset> -->
+                    <button class="reset">Reset</button>
+                </section>
             </div>
 
             <div class="countryList">

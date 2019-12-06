@@ -19,11 +19,42 @@
 .filters {
     border: 1px solid grey;
     background-color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    display: grid;
+    grid-template-rows: 50px calc(100% - 55px);
     padding: 5px;
+}
+
+.filterList {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-rows: 30px;
+    grid-gap: 5px;
+    padding: 5px;
+}
+
+.filters h4 {
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.filterList div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+}
+
+.filterList div input {
+    height: 20px;
+    width: 20px;
 }
 
 
