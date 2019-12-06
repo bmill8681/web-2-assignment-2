@@ -41,8 +41,8 @@ function photoDetails()
             //call a function to get a country code and city code
             echo "<h1>" . $p['Title']. "</h1>";
             echo "<h2>  User ID: " . $p['UserID'] . "</h2>";
-            echo " <h2> <a href='single-country.php?iso=" . $p['CountryCodeISO'] . "'>" . $Countryname[0]['CountryName']. "</a></h2>,";
-            echo "<h2> <a href='single-country.php?iso=CA'>" . $cityname[0]['AsciiName'] . "</a></h2>";
+            echo " <h2> <a href='countryView.php?iso=" . $p['CountryCodeISO'] . "'>" . $Countryname[0]['CountryName']. "</a></h2>,";
+            echo "<h2> <a href='countryView.php?iso=CA'>" . $cityname[0]['AsciiName'] . "</a></h2>";
             
         }
     }
@@ -122,10 +122,10 @@ function displayDetailedInfo()
      <nav class="nav">
         <div class="logo">LOGO</div>
         <div class="navlinks">
-            <a href="home.php">Home</a>
+            <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="single-country.php">Countries</a>
+            <a href="countryView.php">Countries</a>
             <a href="single-city.php">Cities</a>
             <a href="upload.php">Upload</a>
             <a href="profile.php">Profile</a>
