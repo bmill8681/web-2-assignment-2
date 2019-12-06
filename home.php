@@ -14,7 +14,7 @@
      <nav class="nav">
         <div class="logo">LOGO</div>
         <div class="navlinks">
-            <a href="home.php">Home</a>
+            <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
             <a href="single-country.php">Countries</a>

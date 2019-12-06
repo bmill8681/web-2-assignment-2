@@ -36,6 +36,21 @@ document.addEventListener('DOMContentLoaded' , function(){
 
         });
     
+    
+    
+    //Hovering over a picture
+    document.querySelector('.picInfo').addEventListener('mouseover', function(){
+        document.querySelector('.box').style.display = "block";
+         document.querySelector('.box').style.opacity = "0.6";
+    });
+    
+    
+    //Hovering out of picture
+      document.querySelector('.picInfo').addEventListener('mouseout', function(){
+        document.querySelector('.box').style.display = "none";
+    });
+    
+    
 });
 
  

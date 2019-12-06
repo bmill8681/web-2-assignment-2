@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/search.css">
-<!--    <script src="JS/general.js"></script>-->
+    <script src="JS/general.js"></script>
     <script src="JS/search.js"></script>
 </head>
 
@@ -36,20 +36,63 @@
         <div>
             <section id="filterWrapper">
                 <h2>Filter By:</h2>
-                <div class="FilterClass FilterButtonActive"><h3>Title</h3></div>
-                <div class="FilterClass FilterButton"><h3>Country</h3></div>
-                <div class="FilterClass FilterButton"><h3>City</h3></div>
-                <div id="filterInput">Input</div>
+                <button class="FilterClass FilterButtonActive" id="titleFilter">Title</button>
+                <button class="FilterClass FilterButton" id="countryFilter">Country</button>
+                <button class="FilterClass FilterButton" id="cityFilter">City</button>
+                <div id="filterInput">
+                    <form action="./search.php" method="get">
+                        <input type="text" name="title" placeholder="Search By Title (Leave blank for all photos)" />
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
             </section>
             <section id="searchResults">
-                <h1>Search Results</h1>
                 <!-- Actual PHP stuff -->
                 <?php
                 require "searchHelper.inc.php";
+                $photos = null;
                 if (isset($_GET['title'])) {
-                    GetPhotosByTitle($_GET['title']);
-                } else
-                    GetAllPhotos();
+                    $photoTitle = $_GET['title'];
+                    trim($photoTitle, " ");
+                    if($photoTitle == ""){
+                        $photos = GetAllPhotos();
+                    }
+                    else{
+                        $photos = GetPhotosByTitle($photoTitle);
+                    }
+                } 
+                else if (isset($_GET['city'])){
+                    $photoCity = $_GET['city'];
+                    trim($photoCity, " ");
+                    if($photoCity == ""){
+                        $photos = GetAllPhotos();
+                    }
+                    else{
+                        $photos = GetPhotosByCity($photoCity);
+                    }
+                }
+                else if (isset($_GET['country'])){
+                    $photoCountry = $_GET['country'];
+                    trim($photoCountry, " ");
+                    if($photoCountry == ""){
+                        $photos = GetAllPhotos();
+                    }
+                    else{
+                        $photos = GetPhotosByCountry($photoCountry);
+                    }
+                }
+                else{
+                    $photos = GetAllPhotos();
+                }
+                foreach($photos as $key=>$photo){
+                    echo "<div class='PhotoWrapper'>"; 
+                    echo "<section class='PhotoLeft'>";
+                    echo "<img src='./case-travel-master/images/square150/".$photo['Path']."' alt='".$photo['Title']."' />";
+                    echo "<div><h2>".$photo['Title']."</h2>";
+                    echo "<p>".$photo['ActualCreator']."</p>";
+                    echo "<section class='PhotoButtons'><button>View</button><button>Add To Favorites</button></section></div></section>";
+                    echo "</div>";
+                }
                 ?>
                 <!--                        -->
             </section>
@@ -58,9 +101,6 @@
 
     <footer>
         <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-
-
-
     </footer>
 
 

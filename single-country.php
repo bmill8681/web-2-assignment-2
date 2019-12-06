@@ -15,17 +15,19 @@ function printDescription()
     {
         if(isset($_GET["iso"])){
             $iso = $_GET["iso"];
-//            echo "<p>". $iso . "</p>";
             
             $country = printSingleCountry($iso);
-            echo "<p> Country Name : " . $country['CountryName'] . "-" . $country['ISO'] . "</p>";
-            echo "<p> Capital : " . $country['Capital'] . "</p>";
-            echo "<p> Area : " . $country['Area'] . "</p>";
-            echo "<p> Population Number : " . $country['Population'] . "</p>";
-            echo "<p> Continent : " . $country['Continent'] . "</p>";
-            echo "<p> Currency Name : " . $country['CurrencyName'] . "</p>";
-            echo "<p> Languages : " . $country['Languages'] . "</p>";
-            echo "<p> Description : " . $country['CountryDescription'] . "</p>";
+            
+            echo "<table style='margin: 10px;'>";
+                echo "<tr><th>Country Name</th> <td>" . $country['CountryName']. "</td></tr>";
+            
+              echo "<tr><th>Capital</th> <td>" . $country['Capital']. "</td></tr>"; 
+            
+            echo "<tr><th>Country Area</th> <td>" . $country['Area']. "</td></tr>";
+            echo "<tr><th>Country population</th> <td>" . $country['Population']. "</td></tr>";
+            echo "<tr><th>Continent</th> <td>" . $country['Continent']. "</td></tr>";
+            echo "<tr><th>Description</th> <td>" . $country['CountryDescription']. "</td></tr>";
+            echo "</table>";
             
        
         }
@@ -41,11 +43,16 @@ function displayCities()
      if(isset($_GET["iso"])){
          $iso = $_GET["iso"];
          
-         $cities = cityByCountry($iso);   
+         $cities = cityByCountry($iso); 
+         
+        
+//         echo "<nav>";
          foreach($cities as $c)
          {
-              echo "<p><a href='single-city.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></p>";
+              echo "<p style='margin: 3px;text-align: center;'><a href='single-city.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></p>";
          }
+         
+        
     
      }
               
@@ -61,7 +68,7 @@ function displayPhotos()
         
         foreach ($photo as $p)
         {        
-            echo "<a  href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='case-travel-master/images/square150/" . $p['Path'] . "' /> </a>";
+            echo "<a  style='margin: 20px' href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='case-travel-master/images/square150/" . $p['Path'] . "' /> </a>";
             
         }
         
@@ -90,7 +97,7 @@ function displayPhotos()
     <nav class="nav">
         <div class="logo">LOGO</div>
         <div class="navlinks">
-            <a href="home.php">Home</a>
+            <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
             <a href="single-country.php">Countries</a>
@@ -150,7 +157,7 @@ function displayPhotos()
         </div>
         
         <div class="countryList">
-             <h4>Country List</h4>
+             <h4 style="margin: 10px;">Country List</h4>
                 <nav>
                     <ul class="listCountries" role="listbox">
                     </ul>
@@ -165,11 +172,13 @@ function displayPhotos()
         <div class="cityList">
         
                 <h4>City List</h4>
+               
                 <?php displayCities(); ?>
+                
         </div>
         
         <div class="photo">
-            <h4>Photo</h4>
+            <h4 style="margin-bottom: 2em;">Photo</h4>
             <?php displayPhotos(); ?>
         </div>
     

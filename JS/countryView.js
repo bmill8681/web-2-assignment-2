@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded' , function()
             li.setAttribute('name', c.CountryName);
             
           
-
+            li.style.textAlign = "center";
             li.style.listStyleType = "none";
             li.style.padding = "5px";
           

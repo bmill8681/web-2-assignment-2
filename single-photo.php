@@ -16,7 +16,7 @@ function displayPic()
         //print_r($picDetails);
         foreach($picDetails as $p)
         {   
-            echo "<img src='case-travel-master/images/medium640/" . $p['Path'] ."'>";
+            echo "<img class='picInfo' src='case-travel-master/images/medium640/" . $p['Path'] ."'>";
         }
     }
 }
@@ -31,12 +31,18 @@ function photoDetails()
         foreach($picDetails as $p)
         {
             $countryCode = $p['CountryCodeISO'];
+            $Countryname = printNameOfCountry($countryCode);
+            
             $cityCode = $p['CityCode'];
+            $cityname = printNameOfCities($cityCode);
+            
+            
             
             //call a function to get a country code and city code
-            echo "<h1>" . $p['Title']. "</h1>
-                    <h2>  User ID: " . $p['UserID'] . "</h2>
-                    <h2><a href='single-country.php?iso=" . $p['CountryCodeISO'] . "'>" . $countryCode . "</a>, City</h2>";
+            echo "<h1>" . $p['Title']. "</h1>";
+            echo "<h2>  User ID: " . $p['UserID'] . "</h2>";
+            echo " <h2> <a href='single-country.php?iso=" . $p['CountryCodeISO'] . "'>" . $Countryname[0]['CountryName']. "</a></h2>,";
+            echo "<h2> <a href='single-country.php?iso=CA'>" . $cityname[0]['AsciiName'] . "</a></h2>";
             
         }
     }
@@ -55,20 +61,42 @@ function picDescription()
             
             echo "<div class='picDescription1'> <h4>". $p['Description'] ."</h4> </div>";
             
-            echo "<div class='picDetail'> <h4>". $p['Exif'] ."</h4> </div>";
-          
             
-//             echo "<div class='picMap'> <h4> Latitude: ". $p['Latitude'] ."</h4> 
-////             <h4> Longitude: ". $p['Longitude'] ."</h4> </div>";
+            $data = json_decode($p['Exif']);
             
-//            echo "<picture class='picMap'> <img src='case-travel-master/images/medium640/" . $p['Path'] ."'></picture>";
+
+            
+            echo "<div class='picDetail'>" ;
+                echo "<h3> Make: " . $data->make . "</h3> "; 
+                echo "<h3> Model: " . $data->model . "</h3> "; 
+            echo "<h3> exposure_Time: " . $data->exposure_time . "</h3> "; 
+            echo "<h3> Aperture: " . $data->aperture . "</h3> "; 
+            echo "<h3> Focal Length: " . $data->focal_length . "</h3> "; 
+         
+                echo "</div>";
+
             
             echo "<picture class='picMap'> <img src='https://maps.googleapis.com/maps/api/staticmap?center=" . $p['Latitude'] . "," . $p['Longitude'] . "&zoom=12&size=500x500&maptype=hybrid&key=AIzaSyCMnhPvJhjCuI6n-8FIjVVPSJLzViJgfq4'></picture>";
             
-//             echo "<img src='case-travel-master/images/medium640/" . $p['Path'] ."'>";
-            
         }
     }
+}
+
+function displayDetailedInfo()
+{
+    if(isset($_GET["imageid"]))
+    {
+        $imageId = $_GET["imageid"];
+        $picDetails = detailForSinglePhoto($imageId); 
+        
+        foreach($picDetails as $p)
+        {
+             echo "<p>".$p['Description'] . "</p>";
+        }
+       
+        
+    }
+    
 }
 
 
@@ -97,8 +125,8 @@ function picDescription()
             <a href="home.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <a href="upload.php">Upload</a>
             <a href="profile.php">Profile</a>
             <a href="favorites.php">Favorites</a>
@@ -113,6 +141,9 @@ function picDescription()
     <main >
         <section id="left">
             <div> <?php displayPic() ?></div>
+                <section class="box">
+                     <?php displayDetailedInfo(); ?>            
+                </section>
         </section>
         <section id="right" >
             <header>

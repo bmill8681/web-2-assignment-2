@@ -37,7 +37,11 @@
             <section>
                 <button id="login">Login</button>
                 <button id="join">Join</button>
-                <input type="text" class="searchbox" placeholder="Search box for photos">
+                <button id="searchbutton" type="submit">Search</button>
+                
+                <input type="text" name="title" class="searchbox" placeholder="Search Photos">
+                
+                
             </section>
         </div>
     </main>

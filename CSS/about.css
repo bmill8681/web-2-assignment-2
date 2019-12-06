@@ -1,0 +1,63 @@
+
+main div
+{
+    height: 300px;
+}
+
+main div p , main div h3 
+{
+   margin: 2em; 
+}
+
+main div h2
+{
+    margin: 1em;
+}
+
+main div li
+{
+    margin: 10px;
+}
+
+li {
+     list-style-type: none;
+ }
+
+@media only screen and (min-width: 751px)
+{
+    a:hover 
+    {     
+      background-color:skyblue;
+    }
+    
+    main 
+    {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 30px;
+     }
+
+}
+
+ /*For mobile devices*/
+ @media only screen and (max-width: 750px) {
+
+     
+   main 
+    {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+     }
+     
+     main div
+    {
+        height: 250px;
+    }
+     main div p , main div h3 
+    {
+       margin: 2em; 
+    }
+ }
