@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let cityAPI = 'cities.php';
     let countriesWithImagesCheck = 0;
 
-
+    localStorage.removeItem("countries");
     //fetch all the countries from the api
     fetch(countryAPI)
         .then(function (response) {
@@ -127,6 +127,27 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector(".imageOnly").checked = false;
         document.querySelector(".continent").value = "";
         printCountryList(countries);
+    }
+
+    document.querySelector(".imageOnly").addEventListener('change', (e) => getImageOnlyCountries(e.target.checked));
+    function getImageOnlyCountries(checked) {
+        if(checked){
+            let url =  countryAPI + '?withimages=true';
+            fetch(url)
+                .then(data => data.json())
+                .then(data => {
+                    data = data.sort((a,b) => {
+                        if(a.CountryName < b.CountryName) return -1;
+                        if(a.CountryName === b.CountryName) return 0;
+                        return 1;
+                    });
+                    console.log(data);
+                    printCountryList(data);
+                });
+        }
+        else{
+            printCountryList(countries);
+        }
     }
 });
 
