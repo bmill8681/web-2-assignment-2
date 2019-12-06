@@ -47,6 +47,7 @@
             </section>
             <section id="searchResults">
                 <!-- Actual PHP stuff -->
+                <!-- TODO: Sort array of photos by title before echoing photos -->
                 <?php
                 require "searchHelper.inc.php";
                 $photos = null;
