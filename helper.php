@@ -30,6 +30,8 @@ function getImages()
 
 
 
+
+
 function printSingleCountry($iso){
    try {
        
@@ -292,6 +294,33 @@ function printNameOfCities($Cityid)
         
     }
     catch(PDOException $e){
+        die ($e->getMessage());
+    }
+}
+
+//function to print the user's detail
+function userProfile($userId)
+{
+        try{
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
+        
+//        $sql = "SELECT CountryCodeISO FROM imagedetails WHERE 1=1 ";
+        
+         $sql = "select FirstName, LastName , Address,City, Region, Country,Postal, Phone, Email from users where UserID=?";
+//        
+//            $sql = getImages();
+//            $sql .= " FROM imagedetails WHERE 1=1";
+
+         
+
+       $statment = runQuery($connection,$sql,array($userId));
+        
+        $results = $statment->fetchAll(PDO::FETCH_ASSOC);
+        $connection = null;
+        
+        return $results;
+    }
+    catch (PDOException $e){
         die ($e->getMessage());
     }
 }
