@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let eCountries = [];
     //------------Fetching the Countries ---------//
     let countryAPI = 'countries.php';
-    let cityAPI = 'cities.php';
 
     //fetch all the countries from the api
     if (!localStorage.getItem("countries")) {
+        console.log("Fetching the country list");
         fetch(countryAPI)
             .then(function (response) {
                 return response.json();
@@ -26,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
     else {
+        console.log("Parsing Local Storage");
+        console.log(JSON.parse(localStorage.getItem("countries")));
         printCountryList(JSON.parse(localStorage.getItem("countries")));
     }
     
@@ -40,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             a.setAttribute('href', "countryView.php?iso=" + c.ISO);
             a.textContent = c.CountryName;
-            eCountries.push(c);
 
             list.appendChild(li);
             li.appendChild(a);

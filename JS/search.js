@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     addSearchListeners();
 });
 
@@ -43,12 +43,12 @@ setInputFilter = id => {
         addSubmitButton();
     }
     else if (id === "countryFilter") {
-        fetch("./countries.php").then(data => data.json()).then(data => {
-            let countries = [];
-            countries = data;
+        let countries;
+        if (localStorage.getItem("countries")) {
+            countries = JSON.parse(localStorage.getItem("countries"));
             countries = countries.sort((a, b) => {
-                if(a.CountryName.toUpperCase() < b.CountryName.toUpperCase()) return -1;
-                if(a.CountryName.toUpperCase() === b.CountryName.toUpperCase()) return 0;
+                if (a.CountryName.toUpperCase() < b.CountryName.toUpperCase()) return -1;
+                if (a.CountryName.toUpperCase() === b.CountryName.toUpperCase()) return 0;
                 return 1;
             });
             let select = document.createElement("select");
@@ -61,15 +61,36 @@ setInputFilter = id => {
             });
             form.appendChild(select);
             addSubmitButton();
-        });
+        }
+        else {
+            fetch("./countries.php").then(data => data.json()).then(data => {
+                countries = data;
+                countries = countries.sort((a, b) => {
+                    if (a.CountryName.toUpperCase() < b.CountryName.toUpperCase()) return -1;
+                    if (a.CountryName.toUpperCase() === b.CountryName.toUpperCase()) return 0;
+                    return 1;
+                });
+                let select = document.createElement("select");
+                select.setAttribute("name", "country");
+                countries.forEach(cur => {
+                    let option = document.createElement("option");
+                    option.value = cur.ISO;
+                    option.textContent = cur.CountryName;
+                    select.appendChild(option);
+                });
+                form.appendChild(select);
+                addSubmitButton();
+            });
+        }
+
     }
     else if (id === "cityFilter") {
         fetch("./cities.php").then(data => data.json()).then(data => {
             let cities = [];
             cities = data;
             cities = cities.sort((a, b) => {
-                if(a.AsciiName.toUpperCase() < b.AsciiName.toUpperCase()) return -1;
-                if(a.AsciiName.toUpperCase() === b.AsciiName.toUpperCase()) return 0;
+                if (a.AsciiName.toUpperCase() < b.AsciiName.toUpperCase()) return -1;
+                if (a.AsciiName.toUpperCase() === b.AsciiName.toUpperCase()) return 0;
                 return 1;
             });
             let select = document.createElement("select");
