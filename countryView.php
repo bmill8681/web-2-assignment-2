@@ -18,16 +18,14 @@ function printDescription()
 
         $country = printSingleCountry($iso);
 
-        echo "<table style='margin: 10px;'>";
-        echo "<tr><th>Country Name</th> <td>" . $country['CountryName'] . "</td></tr>";
-
-        echo "<tr><th>Capital</th> <td>" . $country['Capital'] . "</td></tr>";
-
-        echo "<tr><th>Country Area</th> <td>" . $country['Area'] . "</td></tr>";
-        echo "<tr><th>Country population</th> <td>" . $country['Population'] . "</td></tr>";
-        echo "<tr><th>Continent</th> <td>" . $country['Continent'] . "</td></tr>";
-        echo "<tr><th>Description</th> <td>" . $country['CountryDescription'] . "</td></tr>";
-        echo "</table>";
+        echo "<section class='locationData'>";
+        echo "<div><h2>Country Name</h2> <h3>" . $country['CountryName'] . "</h3></div>";
+        echo "<div><h2>Capital</h2><h3>" . $country['Capital'] . "</h3></div>";
+        echo "<div><h2>Country Area</h2> <h3>" . $country['Area'] . "</h3></div>";
+        echo "<div><h2>Country population</h2><h3>" . $country['Population'] . "</h3></div>";
+        echo "<div><h2><th>Continent</h2><h3>" . $country['Continent'] . "</h3></div>";
+        echo "<div><h2>Description</h2><h3>" . $country['CountryDescription'] . "</h3></div>";
+        echo "</section>";
     } else { }
 }
 
@@ -99,11 +97,9 @@ function displayPhotos()
             <div class="filters">
                 <h4>Country Filters</h4>
                 <section class="filterList">
-                    <!-- <fieldset> -->
+
                     <input type="text" class="search" placeholder="Country Name" list="filterList">
                     <datalist id="filterList"></datalist>
-                    <!-- </fieldset> -->
-                    <!-- <fieldset> -->
                     <select class="continent">Continent List
                         <option value="">Select Continent</option>
                         <option value="NA">North America</option>
@@ -114,10 +110,7 @@ function displayPhotos()
                         <option value="AN">Antarctica</option>
                         <option value="OC">Oceania</option>
                     </select>
-                    <!-- </fieldset> -->
-                    <!-- <fieldset> -->
                     <div><input type="checkbox" class="imageOnly"> Countries with Images</div>
-                    <!-- </fieldset> -->
                     <button class="reset">Reset</button>
                 </section>
             </div>
@@ -135,7 +128,7 @@ function displayPhotos()
                 <ul><?php displayCities(); ?></ul>
             </div>
             <div class="photo">
-                <h4>Photo</h4>
+                <h4>Photos</h4>
                 <section>
                     <?php displayPhotos(); ?>
                 </section>
