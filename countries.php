@@ -31,7 +31,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "SELECT C.ISO, C.ISONumeric, C.CountryName, C.Capital, C.CityCode, C.Area, C.Population, ";
 $sql .= "C.Continent, C.TopLevelDomain, C.CurrencyCode, C.CurrencyName, C.PhoneCountryCode, C.Languages, ";
 $sql .= "C.Neighbours, C.CountryDescription ";
-$sql .= "FROM Countries C WHERE 1=1 ";
+$sql .= "FROM countries CWHERE 1=1 ";
 
 $iso = null;
 $queryResult = null;
@@ -52,7 +52,7 @@ if (isset($_GET['iso'])) {
 else if (isset($_GET['withimages'])){
   $sql = "SELECT C.ISO, C.ISONumeric, C.CountryName, C.Capital, C.CityCode, C.Area, C.Population, ";
   $sql .= "C.Continent, C.TopLevelDomain, C.CurrencyCode, C.CurrencyName, C.PhoneCountryCode, C.Languages, ";
-  $sql .= "C.Neighbours, C.CountryDescription FROM Countries C ";
+  $sql .= "C.Neighbours, C.CountryDescription FROM countries C";
   $sql .= "JOIN imagedetails I WHERE C.ISO LIKE I.CountryCodeISO GROUP BY C.ISO";
  
   $queryResult = $pdo->query($sql);
