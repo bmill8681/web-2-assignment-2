@@ -30,7 +30,11 @@
     </nav>
 
     <main>
-
+        <?php 
+            include("favoritesHelper.inc.php");
+            echo json_encode(GetUserFavorites(32));
+            
+        ?>
     </main>
 
     <footer>
