@@ -1,40 +1,34 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-
     let eCountries = [];
-    //forcountries with image
-    let countryListImg = [];
-
-
-
     //------------Fetching the Countries ---------//
     let countryAPI = 'countries.php';
     let cityAPI = 'cities.php';
-    let countriesWithImagesCheck = 0;
 
-    localStorage.removeItem("countries");
     //fetch all the countries from the api
-    fetch(countryAPI)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            //sort the countries 
-            let sortedCountries = data.sort((a, b) => {
-                return a.CountryName < b.CountryName ? -1 : 1;
+    if (!localStorage.getItem("countries")) {
+        fetch(countryAPI)
+            .then(function (response) {
+                return response.json();
             })
+            .then(function (data) {
+                //sort the countries 
+                let sortedCountries = data.sort((a, b) => {
+                    return a.CountryName < b.CountryName ? -1 : 1;
+                })
 
-            //put the sorted list into local storage to be stored
-            localStorage.setItem("countries", JSON.stringify(sortedCountries));
-            countries = JSON.parse(localStorage.getItem("countries"));
-
-            printCountryList(countries);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-
-
+                //put the sorted list into local storage to be stored
+                localStorage.setItem("countries", JSON.stringify(sortedCountries));
+                // countries = JSON.parse(localStorage.getItem("countries"));
+                printCountryList(sortedCountries);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    else {
+        printCountryList(JSON.parse(localStorage.getItem("countries")));
+    }
+    
 
     //function to print the country list
     function printCountryList(data) {
@@ -58,19 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     //adding an event listener based on the continent list
-
     let continent = document.querySelector('.continent');
     continent.addEventListener('change', function (e) {
-        //Clear the list of countries
         clearCountries();
-
-        //get the list of countries
         let countries = JSON.parse(localStorage.getItem("countries"));
-        //find the countries based on continent and the value of the option selected
-
         let editiedCountries = countries.filter(c => c.Continent == e.target.value);
-
-        //print out new list
         printCountryList(editiedCountries);
     });
 
@@ -80,16 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     //searching countries by name
-
-
     //matching the country Filter List
-
     //getting the search box element from the html
-    const searchBox = document.querySelector('.search');
-    //getting the suggestions for the user 
-    const suggestions = document.querySelector('#filterList');
-    //defining an event 
-    searchBox.addEventListener('keyup', displayMatches);
+    const searchBox = document.querySelector('.search').addEventListener('keyup', displayMatches);
+
 
     function displayMatches() {
         let countries = JSON.parse(localStorage.getItem("countries"));
@@ -126,27 +106,27 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector(".search").value = "";
         document.querySelector(".imageOnly").checked = false;
         document.querySelector(".continent").value = "";
-        printCountryList(countries);
+        printCountryList(JSON.parse(localStorage.getItem("countries")));
     }
 
     document.querySelector(".imageOnly").addEventListener('change', (e) => getImageOnlyCountries(e.target.checked));
     function getImageOnlyCountries(checked) {
-        if(checked){
-            let url =  countryAPI + '?withimages=true';
+        if (checked) {
+            let url = countryAPI + '?withimages=true';
             fetch(url)
                 .then(data => data.json())
                 .then(data => {
-                    data = data.sort((a,b) => {
-                        if(a.CountryName < b.CountryName) return -1;
-                        if(a.CountryName === b.CountryName) return 0;
+                    data = data.sort((a, b) => {
+                        if (a.CountryName < b.CountryName) return -1;
+                        if (a.CountryName === b.CountryName) return 0;
                         return 1;
                     });
                     console.log(data);
                     printCountryList(data);
                 });
         }
-        else{
-            printCountryList(countries);
+        else {
+            printCountryList(JSON.parse(localStorage.getItem("countries")));
         }
     }
 });
