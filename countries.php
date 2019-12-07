@@ -31,7 +31,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "SELECT C.ISO, C.ISONumeric, C.CountryName, C.Capital, C.CityCode, C.Area, C.Population, ";
 $sql .= "C.Continent, C.TopLevelDomain, C.CurrencyCode, C.CurrencyName, C.PhoneCountryCode, C.Languages, ";
 $sql .= "C.Neighbours, C.CountryDescription ";
-$sql .= "FROM countries CWHERE 1=1 ";
+$sql .= "FROM countries C WHERE 1=1 ";
 
 $iso = null;
 $queryResult = null;
