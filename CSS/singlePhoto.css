@@ -78,6 +78,99 @@ main div {
     background-color: rgb(248, 248, 248);
 }
 
+/* Details Section */
+.detailWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.tabContainer{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 50px calc(100% - 50px);
+    grid-template-columns: 100%;
+}
+
+.tabContainer header{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 100%; 
+}
+.tab {
+    border: 1px solid grey;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.tab:hover{
+    cursor: pointer;
+    background-color: rgb(248, 248, 248);
+}
+#info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 10px; 
+}
+
+.picDescription, .picDetail{
+    font-size: 1.0em;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.picDetail{
+    flex-direction: column;
+}
+
+.picMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.picMap img {
+    max-width: 100%;
+    width: auto;
+    max-height: 100%;
+    height: auto;
+}
+
+.picColorWrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 35px;
+    width: 100%; 
+}
+.picColor{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.Hide {
+    display: none;
+}
+
 @media only screen and (max-width: 750px){
     main div {
         display: grid;

@@ -20,7 +20,7 @@ function getCities()
 
 function getImages()
 {
-    $sql = "SELECT ImageID, UserID, CityCode, Title, Description, Latitude, Longitude, CountryCodeISO, Path, Exif";
+    $sql = "SELECT ImageID, UserID, CityCode, Title, Description, Latitude, Longitude, CountryCodeISO, Colors, Path, Exif";
     
     
     
@@ -324,10 +324,3 @@ function userProfile($userId)
         die ($e->getMessage());
     }
 }
-
-
-
-
-
-
-?>
