@@ -94,7 +94,7 @@ function displayPicsForCity()
         <div class="container">
 
             <div class="filters">
-                <h4>Country Filters</h4>
+                <h4>Country Filters<span id="filtersButton" data-open="false">-</span></h4>
                 <section class="filterList">
 
                     <input type="text" class="search" placeholder="Country Name" list="filterList">
@@ -115,12 +115,12 @@ function displayPicsForCity()
             </div>
 
             <div class="countryList">
-                <h4>Country List</h4>
+                <h4>Country List<span id="filtersButton2" data-open="false">-</span></h4>
                 <ul class="listCountries" role="listbox"></ul>
             </div>
 
             <div class="description">
-                <h4>City Details</h4>
+                <h4>City Details<span id="filtersButton3" data-open="false">-</span></h4>
                 <?php cityDetail(); ?>
             </div>
 

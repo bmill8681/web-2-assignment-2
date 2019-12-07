@@ -4,10 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //fetch all the countries from the api
     if (!localStorage.getItem("countries")) {
-        console.log("Fetching the country list");
         fetch(countryAPI)
             .then(function (response) {
-                console.log(response);
                 return response.json();
             })
             .then(function (data) {
@@ -26,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
     else {
-        console.log("Parsing Local Storage");
-        console.log(JSON.parse(localStorage.getItem("countries")));
         printCountryList(JSON.parse(localStorage.getItem("countries")));
     }
     
@@ -130,5 +126,42 @@ document.addEventListener('DOMContentLoaded', function () {
             printCountryList(JSON.parse(localStorage.getItem("countries")));
         }
     }
+
+    /* Mobile View Toggles */
+    // This should be refactored and would be in a commecial project
+    document.querySelector("#filtersButton").addEventListener('click', e => {
+        e.target.dataset.open === "false" ? e.target.dataset.open = "true" : e.target.dataset.open = "false";
+        if(e.target.dataset.open === "true"){
+            document.querySelector(".filterList").classList.add("Hide");
+            document.querySelector("#filtersButton").textContent = "+";
+        }else{
+            document.querySelector(".filterList").classList.remove("Hide");
+            document.querySelector("#filtersButton").textContent = "-";
+        }
+    });
+    document.querySelector("#filtersButton2").addEventListener('click', e => {
+        e.target.dataset.open === "false" ? e.target.dataset.open = "true" : e.target.dataset.open = "false";
+        if(e.target.dataset.open === "true"){
+            document.querySelector(".countryList").classList.add("Shrink");
+            document.querySelector(".listCountries").classList.add("Hide");
+            document.querySelector("#filtersButton2").textContent = "+";
+        }else{
+            document.querySelector(".countryList").classList.remove("Shrink");
+            document.querySelector(".listCountries").classList.remove("Hide");
+            document.querySelector("#filtersButton2").textContent = "-";
+        }
+    });
+    document.querySelector("#filtersButton3").addEventListener('click', e => {
+        e.target.dataset.open === "false" ? e.target.dataset.open = "true" : e.target.dataset.open = "false";
+        if(e.target.dataset.open === "true"){
+            document.querySelector(".locationData").classList.add("Hide");
+            document.querySelector(".description").classList.add("Shrink");
+            document.querySelector("#filtersButton3").textContent = "+";
+        }else{
+            document.querySelector(".locationData").classList.remove("Hide");
+            document.querySelector(".description").classList.remove("Shrink");
+            document.querySelector("#filtersButton3").textContent = "-";
+        }
+    });
 });
 

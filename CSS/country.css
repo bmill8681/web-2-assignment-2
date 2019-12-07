@@ -1,8 +1,3 @@
-/* h4, h3 {
-    font-weight: bold;
-    font-family: 'Dancing Script', cursive;
-} */
-
 .container {
     width: 100%;
     height: 100%;
@@ -22,6 +17,10 @@
     display: grid;
     grid-template-rows: 50px calc(100% - 55px);
     padding: 5px;
+}
+
+#filtersButton, #filtersButton2, #filtersButton3 {
+    display: none;
 }
 
 .filterList {
@@ -280,4 +279,111 @@
 
 .photo img:hover {
     transform: scale(1.05);
+}
+
+
+@media only screen and (max-width: 750px){
+
+    .container {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    /* Filters */
+    #filtersButton, #filtersButton2, #filtersButton3 {
+        height: 23px;
+        width: 23px;
+        padding: 5px;
+        border: 1px solid grey;
+        border-radius: 5px;
+        background-color: whitesmoke;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        font-size: 1.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 30px; 
+    }
+    #filtersButton:active, #filtersButton2:active, #filtersButton3:active{
+        transform: translateY(2px);
+        box-shadow: rgba(0,0,0,0.1);
+    }
+    #filtersButton:hover, #filtersButton2:hover, #filtersButton3:hover{
+        cursor: pointer;
+    }
+    .filters {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+    .countryList, .cityList, .description, .mapWrapper {
+        display: grid;
+        grid-template-rows: 30px auto;
+        width: 100%;
+        height: 100%;
+    }
+    .description {
+        display: grid;
+        grid-template-rows: 30px auto;
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    .locationData div {
+
+        grid-template-columns: 125px auto;
+        grid-gap: 10px;
+        margin: 0px;
+        padding: 0px;
+        border-bottom: 1px solid grey;
+    }
+    .description h2, .description h3 {
+        font-size: 10pt;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .description h2, .description h3 {
+        justify-content: flex-start;
+    }
+    .cityList ul{
+        grid-template-columns: 1fr 1fr;
+    }
+    .filters h4, .listCountries h4, .description h4, .cityList h4, .mapWrapper h4 {
+        height: 30px;
+    }
+    .mapWrapper section {
+        max-height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .Shrink {
+        display: grid;
+        grid-template-rows: 30px 5px;
+        height: 35px;
+        min-height: 35px;
+    }
+    .Hide {
+        display: none;
+    }
+    .photo section{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 5px;
+    }
+    .photo img {
+        margin: 5px;
+        height: 75px;
+        width: 75px;
+    }
 }
