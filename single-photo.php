@@ -42,6 +42,35 @@ function photoDetails()
     }
 }
 
+function hoverPhotoDetails()
+{
+    if (isset($_GET["imageid"])) {
+        $imageId = $_GET["imageid"];
+        $picDetails = detailForSinglePhoto($imageId);
+
+        foreach ($picDetails as $p) {
+            $data = json_decode($p['Exif']);
+            echo "<div class='picDetail2'>";
+            if ($data) {
+                echo "<h3> Make: " . $data->make . "</h3> ";
+                echo "<h3> Model: " . $data->model . "</h3> ";
+                echo "<h3> exposure_Time: " . $data->exposure_time . "</h3> ";
+                echo "<h3> Aperture: " . $data->aperture . "</h3> ";
+                echo "<h3> Focal Length: " . $data->focal_length . "</h3> ";
+                $colors = json_decode($p['Colors']);
+                echo "<div class='picColorWrapper'> <h3>Colors: </h3>";
+                foreach($colors as $color){
+                    echo "<div class='picColor' style='background-color: ".$color."'></div>";
+                }
+                echo"</span></div>";
+                echo "</div>";
+            } else {
+                echo "<p>No Details Available</p></div>";
+            }
+        }
+    }
+}
+
 function picDescription()
 {
     if (isset($_GET["imageid"])) {
@@ -119,6 +148,7 @@ function picDescription()
 
     <main>
         <div>
+            <div class="hoverDetails Invisible"><?php hoverPhotoDetails();  ?></div>
             <section class="photoWrapper">
                 <?php displayPic(); ?>
             </section>
@@ -137,9 +167,6 @@ function picDescription()
                     </header>
                     <section id="info">
                         <?php picDescription(); ?>
-                        <!-- <div class="picDescription">Description</div>
-                        <div class="picDetail Hide">Details</div>
-                        <div class="picMap Hide">Map</div> -->
                     </section>
                 </section>
             </section>

@@ -6,6 +6,9 @@ addDescriptionListeners = () => {
     document.querySelector(".tab1").addEventListener('click', () => setDetails("Description"));
     document.querySelector(".tab2").addEventListener('click', () => setDetails("Details"));
     document.querySelector(".tab3").addEventListener('click', () => setDetails("Map"));
+    document.querySelector(".picInfo").addEventListener('mouseover', (e) => showMouseOver(e));
+    document.querySelector(".picInfo").addEventListener('mouseout', () => hideMouseOver());
+    document.querySelector(".picInfo").addEventListener('mousemove', (e) => showMouseOver(e))
 }
 
 setDetails = type => {
@@ -25,4 +28,15 @@ setDetails = type => {
         document.querySelector(".picMap").classList.remove("Hide");
         document.querySelector(".picDescription").classList.add("Hide");
     }
+}
+
+showMouseOver = e => {
+    let top = e.screenY - 275;
+    let left = e.screenX + 5;
+    document.querySelector(".hoverDetails").classList.remove("Invisible");
+    document.querySelector(".hoverDetails").setAttribute('style', `top: ${top}px; left: ${left}px`);
+}
+
+hideMouseOver = () => {
+    document.querySelector(".hoverDetails").classList.add("Invisible");
 }
