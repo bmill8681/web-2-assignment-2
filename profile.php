@@ -1,3 +1,49 @@
+<?php
+
+require_once('config.inc.php');
+require_once('helper.php');
+require_once('setConnection.php');
+
+function userInfo()
+    {
+        session_start();
+//        echo session_id();
+
+        if (isset($_SESSION['id']))
+        {
+            //User is logged in
+            $userId = $_SESSION['id'];
+            
+//            print_r($userId);
+            $user = userProfile($userId);
+
+            
+            foreach($user as $u)
+            {
+              
+            echo "<table>";
+            echo "<tr><th>First Name</th> <td>" . $u['FirstName']  . "</td></tr>";
+            echo "<tr><th> Last Name</th> <td>" . $u['LastName']  . "</td></tr>";
+                 echo "<tr><th> Address</th> <td>" . $u['Address']  . "</td></tr>";
+                 echo "<tr><th>Region</th> <td>" . $u['Region']  . "</td></tr>";
+                 echo "<tr><th>Country</th> <td>" . $u['Country']  . "</td></tr>";
+                 echo "<tr><th>City</th> <td>" . $u['City']  . "</td></tr>";
+                 echo "<tr><th>Postal Code</th> <td>" . $u['Postal']  . "</td></tr>";
+                 echo "<tr><th>Phone</th> <td>" . $u['Phone']  . "</td></tr>";
+                 echo "<tr><th>Email</th> <td>" . $u['Email']  . "</td></tr>";
+            echo "</table>";            
+            }
+
+        }
+        else        
+        {
+            //No one is logged in
+        }
+  
+    }
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +53,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
+    <link rel="stylesheet" href="CSS/profile.css">
     <script src="JS/general.js"></script>
 </head>
 
@@ -30,7 +77,13 @@
     </nav>
 
     <main>
+       <div>
+        <h1>User Profile</h1>
+           <div class='userInfo'>
+                <?php userInfo(); ?>
+            </div>
 
+        </div>
     </main>
 
     <footer>
