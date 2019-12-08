@@ -45,9 +45,58 @@ button:hover {
     padding: 5px;
 }
 
+.container {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    grid-gap: 5px;
+    background-color: none;
+    background-image: none; 
+}
+
+.leftcontainer {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 62% 35%;
+    grid-gap: 5px;
+    background-color: none;
+    background-image: none; 
+}
+
+.userInfo {
+    grid-row: 1;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+    background-image: none;
+}
+
+.favoriteImages {
+    grid-row:2;
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+    background-image: none;
+}
+
+
 @media only screen and (max-width: 750px) 
 {
     section {
         max-width: 90%;
     }
 }
+

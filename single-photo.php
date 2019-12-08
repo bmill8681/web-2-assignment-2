@@ -127,18 +127,16 @@ function picDescription()
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
             <a href="cityView.php">Cities</a>
-            <!-- <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a> -->
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
             <?php
-            if (isset($_SESSION['id'])) {
-                echo "<a href='logout.php'>Log Out</a>";
-            } else {
-                echo "<a href='profile.php'>Profile</a>";
-                echo "<a href='favorites.php'>Favorites</a>";
-            }
-
+                session_start();
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
             ?>
         </div>
         <button class="hamburger">

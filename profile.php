@@ -3,10 +3,11 @@
 require_once('config.inc.php');
 require_once('helper.php');
 require_once('setConnection.php');
+session_start();
+
 
 function userInfo()
     {
-        session_start();
 //        echo session_id();
 
         if (isset($_SESSION['id']))
@@ -67,10 +68,16 @@ function userInfo()
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
             <a href="cityView.php">Cities</a>
-            <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a>
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
+            <?php
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php" class="active">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
+            ?>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>
