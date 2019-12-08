@@ -1,0 +1,93 @@
+body
+{
+    background-image: url(../images/pavel-barysevich-XmqsrSq63q4-unsplash.jpg);
+}
+
+main div
+{
+    height: 300px;
+    text-align: center; 
+    border: solid 1px grey; 
+    margin: 1em;
+}
+
+main div p , main div h3 
+{
+   margin: 2em; 
+}
+
+main div h2
+{
+    margin: 1em;
+}
+
+main div li
+{
+    margin: 10px;
+}
+
+li {
+     list-style-type: none;
+ }
+
+ a:hover 
+    {     
+      color: red;
+    }
+
+
+
+@media only screen and (min-width: 751px)
+{
+    main 
+    {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 30px;
+     }
+    
+    .description
+    {
+        grid-column: 1 / 4;
+        grid-row: auto;
+        background-image: url('../images/heroimage.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+ /*For mobile devices*/
+ @media only screen and (max-width: 750px) {
+
+     
+   main 
+     {
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: 1fr;
+     }
+     
+    main div
+        {
+            height: 250px;
+            margin: 10px;
+        }
+     main div p , main div h3 , main div h2
+        {
+           margin: 20px; 
+        }
+     main div li
+        {
+            margin: 5px;
+        }
+     .div1
+         {
+             height: 200px;
+         }
+     .description
+         {
+             display: none;
+         }
+ }

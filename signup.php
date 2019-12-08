@@ -89,6 +89,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
+    <link rel="stylesheet" href="CSS/signup.css">
     <script src="JS/general.js"></script>
 </head>
 
@@ -112,39 +113,46 @@
     </nav>
 
     <main>
+       
+       <div class="loginContainer">
+       
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account:</p>
+            
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
             <div>
-                <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
-                <hr>
+                
                 <label for="firstname"><b>First Name</b></label>
                 <input type="text" placeholder="Enter First Name" name="firstname" value='<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ''; ?>' required>
-                <br>
+                
                 <label for="lastname"><b>Last Name</b></label>
                 <input type="text" placeholder="Enter Last Name" name="lastname" value='<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ''; ?>' required>
-                <br>
+                
                 <label for="city"><b>City</b></label>
                 <input type="text" placeholder="Enter City" name="city" value='<?php echo isset($_POST['city']) ? $_POST['city'] : ''; ?>' required>
-                <br>
+                
                 <label for="country"><b>Country</b></label>
                 <input type="text" placeholder="Enter Country" name="country" value='<?php echo isset($_POST['country']) ? $_POST['country'] : ''; ?>' required>
-                <br>
+                
                 <label for="email"><b>Email</b></label>
                 <input type="email" placeholder="Enter Email" name="email" value='<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>' required>
-                <br>
+                
                 <label for="pass"><b>Password</b></label>
                 <input type="password" minlength=8 placeholder="Enter Password" name="pass" required>
-                <br>
+                
                 <label for="pass-repeat"><b>Confirm Password</b></label>
                 <input type="password" placeholder="Confirm Password" name="pass-repeat" required>
                 <hr>
+                
                 <button type="submit">Sign Up</button>
             </div>
   
             <div>
-                <p>Already have an account? <a href="login.php">Sign in</a>.</p>
+                <p>Already have an account?
+                    <button class="signIn"><a href="login.php">Sign in</a></button></p>
             </div>
         </form>
+        </div>
     </main>
 
     <footer>
