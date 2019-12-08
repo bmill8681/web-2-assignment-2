@@ -29,8 +29,9 @@ function userInfo()
                  echo "<tr><th>Country</th> <td>" . $u['Country']  . "</td></tr>";
                  echo "<tr><th>City</th> <td>" . $u['City']  . "</td></tr>";
                  echo "<tr><th>Postal Code</th> <td>" . $u['Postal']  . "</td></tr>";
+                echo "<tr><th>Email</th> <td>" . $u['Email']  . "</td></tr>";
                  echo "<tr><th>Phone</th> <td>" . $u['Phone']  . "</td></tr>";
-                 echo "<tr><th>Email</th> <td>" . $u['Email']  . "</td></tr>";
+                 
             echo "</table>";            
             }
 

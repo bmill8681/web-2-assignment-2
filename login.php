@@ -64,6 +64,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/login.css">
+    <script src="JS/general.js"></script>
+<!--    <link rel="stylesheet" href="CSS/login.css">-->
 </head>
 
 <body>
@@ -87,12 +89,19 @@
     </nav>
 
     <main>
+      
         <div class="loginContainer">
+           
+            <h1> Sign in</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                Email: <input type="email" name="email" required><br>
-                Password: <input type="password" name="pass" required><br>
+                <label for="email">Email Address</label>
+                <input type="email" placeholder="Email" name="email" required />
+                <label for="password"> Password</label>
+                <input type="password" placeholder="Password" name="pass" required />
                 <input type="submit">
             </form>
+            
+     
 
         </div>
     </main>

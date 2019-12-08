@@ -1,17 +1,17 @@
-
 main 
 {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: auto;
-   background-image: url(../images/pavel-barysevich-XmqsrSq63q4-unsplash.jpg);
+    background-image: url(../images/pavel-barysevich-XmqsrSq63q4-unsplash.jpg);
     background-size: cover;
+
 }
 
 .loginContainer
 {
-    margin: 2em;
+    margin: 1em;
 /*    border: solid 2px grey;*/
     border-radius: 10%;
     
@@ -21,14 +21,19 @@ main
 
 .loginContainer h1
 {
-    text-align: center;
     margin: 1em;
+    text-align: center;
+}
+
+.loginContainer p , p
+{
+    margin: 1em;
+    font-size: 120%;
 }
 
 label
 {
     margin: 1em;
-    font-size: 160%;
     
 }
 
@@ -42,28 +47,35 @@ input
     outline: none;
 }
 
-input[type=submit]
+button 
 {
     background-color: dodgerblue;
     color: white;
     padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
     cursor: pointer;
+    margin: 1em;
+    width: 95%;
 }
 
-input[type=submit]:hover{
-    opacity: 0.8;
+button:hover {
+  opacity: 0.8;
 }
 
 
-
+.signIn
+{
+    width: 43%;
+}
 
 /*Mobile View*/
 @media only screen and (max-width: 751px)
 {
-    main
+   main
     {
         grid-template-columns: 1fr;
     }
   
-    
+   
 }
