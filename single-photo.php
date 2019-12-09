@@ -109,12 +109,14 @@ function addFavsButton(){
         // Check if favorites is part of session
         if(isset($_SESSION['favorites'])){
             $favs = $_SESSION['favorites'];
+            echo "<script type='text/javascript'>console.log(".json_encode($favs).");</script>";
+            echo "<script type='text/javascript'>console.log(".strval($_GET['imageid']).");</script>";
             $found = array_search($_GET['imageid'], $favs);
             if(!$found){
                 echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";   
             }
             else{
-                echo "<button disabled='true' class='favoritesButton' data-imageid='".$_GET['imageid']."'>Already Saved!</button>";
+                echo "<button disabled='true' class='favoritesbutton' >Already Saved!</button>";
             }                
         }else{ // If not part of session, add it
             $_SESSION['favorites'] = array();

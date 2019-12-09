@@ -17,7 +17,7 @@ addToFavorites = (e) => {
     fetch(`favoritesHelper.inc.php?imageid=${e.target.dataset.imageid}`)
         .then(data => data.json())
         .then(data => {
-            console.log(data);
+            console.log(`Added: data`);
             if(data){
                 document.querySelector(".favoritesButton").setAttribute("disabled", "true");
                 document.querySelector(".favoritesButton").textContent = "Added to Favorites!";

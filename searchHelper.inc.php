@@ -120,4 +120,21 @@ function GetPhotosByCity($city){
     return $result;
 }
 
+function GetPhotosByID($id){
+    $sql = GetBaseSQL();
+    $sql .= "AND ImageID LIKE :id ";
+
+    $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $queryResult = null;
+    // Fixed so it isn't concatenating the sql. Now uses a prepared statement instead.
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":id", $id);
+    $statement->execute();
+    $queryResult = $statement->fetch();
+    $pdo = null;
+    return formatRow($queryResult);
+}
+
 ?>
