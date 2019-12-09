@@ -102,6 +102,29 @@ function picDescription()
     }
 }
 
+function addFavsButton(){
+    // Check if logged in
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+        // Check if favorites is part of session
+        if(isset($_SESSION['favorites'])){
+            $favs = $_SESSION['favorites'];
+            foreach($favs as $pic){
+                if($pic['imageid'] == $_GET['imageid']){
+                    echo "<button disabled='true' class='favoritesButton' data-imageid='".$_GET['imageid']."'>Already Saved!</button>";
+                    return;
+                }
+            }
+            echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";
+        }else{ // If not part of session, add it
+            $_SESSION['favorites'] = array();
+            echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";
+        }
+    }
+    else { // If not logged in, redirect to login page
+        echo "<a href='login.php' ><button>Login to Save Favorite</button></a>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -154,7 +177,7 @@ function picDescription()
                 <section>
                     <?php photoDetails();  ?>
                 </section>
-                <button>Add To Favorites</button>
+                <?php addFavsButton(); ?>
             </section>
             <section class="detailWrapper">
                 <section class="tabContainer">
