@@ -57,6 +57,30 @@
                 <!-- TODO: Sort array of photos by title before echoing photos -->
                 <?php
                 require "searchHelper.inc.php";
+
+                function addFavsButton($id){
+                    // Check if logged in
+                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                        // Check if favorites is part of session
+                        if(isset($_SESSION['favorites'])){
+                            $favs = $_SESSION['favorites'];
+                            $found = array_search($id, $favs);
+                            if(!$found){
+                                echo "<button class='favoritesButton' data-imageid='".$id."'>Add To Favorites</button>";
+                            }else{
+                                echo "<button disabled='true'>Already Saved!</button>";
+                            }                            
+                        }else{ // If not part of session, add it
+                            $_SESSION['favorites'] = array();
+                            echo "<button class='favoritesButton' data-imageid='".$id."'>Add To Favorites</button>";
+                        }
+                    }
+                    else { // If not logged in, redirect to login page
+                        echo "<a href='login.php' ><button>Login to Save</button></a>";
+                    }
+                }
+
+
                 $photos = null;
                 if (isset($_GET['title'])) {
                     $photoTitle = $_GET['title'];
@@ -99,8 +123,9 @@
                     echo "<a href='./single-photo.php?imageid=".$photo['ImageID']."'><img src='https://storage.googleapis.com/photosasg02/square150/".$path."' alt='".$photo['Title']."' /></a>";
                     echo "<div><h2>".$photo['Title']."</h2>";
                     echo "<p>".$photo['ActualCreator']."</p>";
-                    echo "<section class='PhotoButtons'><a href='./single-photo.php?imageid=".$photo['ImageID']."'>View</a><button>Add To Favorites</button></section></div></section>";
-                    echo "</div>";
+                    echo "<section class='PhotoButtons'><a href='./single-photo.php?imageid=".$photo['ImageID']."'>View</a>";
+                    addFavsButton($photo['ImageID']);
+                    echo "</section></div></section></div>";
                 }
                 ?>
             </section>

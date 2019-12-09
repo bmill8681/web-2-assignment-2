@@ -1,4 +1,5 @@
 <?php
+
 require_once('config.inc.php');
 require_once('helper.php');
 require_once('setConnection.php');
@@ -108,13 +109,13 @@ function addFavsButton(){
         // Check if favorites is part of session
         if(isset($_SESSION['favorites'])){
             $favs = $_SESSION['favorites'];
-            foreach($favs as $pic){
-                if($pic['imageid'] == $_GET['imageid']){
-                    echo "<button disabled='true' class='favoritesButton' data-imageid='".$_GET['imageid']."'>Already Saved!</button>";
-                    return;
-                }
+            $found = array_search($_GET['imageid'], $favs);
+            if(!$found){
+                echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";   
             }
-            echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";
+            else{
+                echo "<button disabled='true' class='favoritesButton' data-imageid='".$_GET['imageid']."'>Already Saved!</button>";
+            }                
         }else{ // If not part of session, add it
             $_SESSION['favorites'] = array();
             echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";

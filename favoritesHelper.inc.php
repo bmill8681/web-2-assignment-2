@@ -2,59 +2,34 @@
     session_start();
     require_once './config.inc.php';
 
-    function GetBaseSQL(){
-        $sql = "SELECT I.ImageID, I.UserID, I.Title, I.Description, I.Latitude, I.Longitude, I.CityCode, I.CountryCodeISO, I.ContinentCode, ";
-        $sql .= "I.Path, I.Exif, I.ActualCreator, I.CreatorURL, I.SourceURL, I.Colors FROM imagedetails I ";
-        return $sql;
-    }
-
-    function formatRow($cur)
-    {
-        $data = [
-            "ImageID" =>        $cur[0],
-            "UserID" =>         $cur[1],
-            "Title" =>          $cur[2],
-            "Description" =>    $cur[3],
-            "Latitude" =>       $cur[4],
-            "Longitude" =>      $cur[5],
-            "CityCode" =>       $cur[6],
-            "CountryCodeISO" => $cur[7],
-            "ContinentCode" =>  $cur[8],
-            "Path" =>           $cur[9],
-            "Exif" =>           $cur[10],
-            "ActualCreator" =>  $cur[11],
-            "CreatorURL" =>     $cur[12],
-            "SourceURL" =>      $cur[13],
-            "Colors" =>         $cur[14]
-        ];
-        return $data;
-    }
-
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
         if(isset($_GET["imageid"])){
+            // Setup sessions array
+                $favsList = array();
+                if(isset($_SESSION['favorites'])){
+                    $favsList = $_SESSION['favorites'];
+                }
+
+            // Preparing SQL
             $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = GetBaseSQL();
-            $sql .= " WHERE I.ImageID LIKE :imageid ";
+            // $sql = GetBaseSQL();
+            $sql = "SELECT ImageID FROM imagedetails WHERE ImageID = :imageid ";
             $statement = $pdo->prepare($sql);
             $statement->bindValue(":imageid", $_GET["imageid"]);
             $statement->execute();
-            $queryResult = $statement->fetchAll();
-            $result = array();
-            foreach ($queryResult as $row) {
-                array_push($result, formatRow($row));
-            }
+            $queryResult = $statement->fetch();
             $pdo = null;
-            // Result has the new image details to add
-            if(isset($_SESSION['favorites'])){
-                $favsList = $_SESSION['favorites'];
-                foreach($result as $cur){
-                    array_push($favsList, $cur);
-                }
-                // $_SESSION['favorites'] = $favsList;
-                $added = true;
-                echo json_encode($added);
+
+            // Store to session data
+            if($queryResult){
+                array_push($favsList, $_GET['imageid']);
+                $_SESSION['favorites'] = $favsList;
+                echo json_encode(true);    
             }
+            else {
+                echo json_encode(false); 
+            }        
         }
     }
 

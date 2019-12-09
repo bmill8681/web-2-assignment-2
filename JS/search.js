@@ -4,6 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 addSearchListeners = () => {
     addFilterButtonListeners();
+    if(document.querySelector(".favoritesButton"))
+        document.querySelector(".favoritesButton").addEventListener('click', (e) => addToFavorites(e));
+}
+
+addToFavorites = (e) => {
+    // console.log(e.target.dataset.imageid);
+    fetch(`favoritesHelper.inc.php?imageid=${e.target.dataset.imageid}`)
+        .then(data => data.json())
+        .then(data => {
+            if(data){
+                document.querySelector(".favoritesButton").setAttribute("disabled", "true");
+                document.querySelector(".favoritesButton").textContent = "Added to Favorites!";
+            }
+            console.log("ADDED");
+        });
 }
 
 addFilterButtonListeners = () => {
