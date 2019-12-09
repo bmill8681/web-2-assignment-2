@@ -38,6 +38,9 @@ nav .logo {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+
 }
 
 .navlinks {
