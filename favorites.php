@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="CSS/general.css">
     <link rel="stylesheet" href="CSS/favorites.css">
     <script src="JS/general.js"></script>
+    <script src="JS/favorites.js"></script>
 </head>
 
 <body>
