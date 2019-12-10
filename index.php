@@ -1,5 +1,86 @@
 <?php
-    session_start();
+
+require_once('config.inc.php');
+require_once('helper.php');
+require_once('setConnection.php');
+session_start();
+
+function userInfo()
+{
+
+    if (isset($_SESSION['id'])) {
+        $userId = $_SESSION['id'];
+        $user = userProfile($userId);
+
+        foreach ($user as $u) {
+
+            echo "<table>";
+            echo "<tr><th>First Name</th> <td>" . $u['FirstName']  . "</td></tr>";
+            echo "<tr><th> Last Name</th> <td>" . $u['LastName']  . "</td></tr>";
+            echo "<tr><th>Country</th> <td>" . $u['Country']  . "</td></tr>";
+            echo "<tr><th>City</th> <td>" . $u['City']  . "</td></tr>";
+
+            echo "</table>";
+        }
+    }
+}
+
+function  imagesYouLike()
+{
+    if (isset($_SESSION['id'])) {
+        $userId = $_SESSION['id'];
+        $user = userProfile($userId);
+        foreach ($user as $u) {
+            $countryName = $u['Country'];
+
+            $getISO = getCountryISO($countryName);
+            //                 print_r($getISO);
+            //                 echo $getISO;
+
+            foreach ($getISO as $g) {
+                //                       echo $g['ISO'];
+
+                $photosByCountry = photosByCountry($g['ISO']);
+                foreach ($photosByCountry as $p) {
+                    $path = $p['Path'];
+                    $path = strtolower($path);
+                    echo "<a href='single-photo.php?imageid=" . $p['ImageID'] . "'>";
+                    echo "<img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "'/></a>";
+                }
+            }
+        }
+    }
+}
+
+function favImages()
+{
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        if (isset($_SESSION['favorites'])) {
+            $favs = $_SESSION['favorites'];
+            include 'searchHelper.inc.php';
+            if (count($favs) == 0) {
+                echo "<h1>No favorites saved yet!</h1>";
+            } else {
+
+                foreach ($favs as $id) {
+                    $photo = GetPhotosByID($id);
+                    addPhoto($photo);
+                }
+            }
+        } else {
+            echo "<h1>No favorites saved yet!</h1>";
+        }
+    }
+}
+
+function addPhoto($photo)
+{
+    $path = $photo['Path'];
+
+
+    echo "<a href='./single-photo.php?imageid=" . $photo['ImageID'] . "'><img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "' alt='" . $photo['Title'] . "' /></a>";
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,14 +106,14 @@
             <a href="single-country.php">Countries</a>
             <a href="single-city.php">Cities</a>
             <?php
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                    echo '<a href="profile.php">Profile</a>';
-                    echo '<a href="favorites.php">Favorites</a>';
-                    echo "<a href='logout.php'>Logout</a>";
-                } else {
-                    echo "<a href='login.php'>Login</a>";
-                    echo '<a href="signup.php">Signup</a>';
-                }
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo '<a href="profile.php">Profile</a>';
+                echo '<a href="favorites.php">Favorites</a>';
+                echo "<a href='logout.php'>Logout</a>";
+            } else {
+                echo "<a href='login.php'>Login</a>";
+                echo '<a href="signup.php">Signup</a>';
+            }
             ?>
         </div>
         <button class="hamburger">
@@ -41,18 +122,45 @@
     </nav>
 
     <main>
+
         <?php
-            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                echo '<div class="container">
-                        <div class="leftcontainer">
-                            <div class="userInfo">
-                            </div>
-                            <div class="favoriteImages">
-                            </div>
-                        </div>
-                      </div>';
-            } else {
-                echo '<div>
+
+
+        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+
+
+            echo "<div class='container'>";
+
+            // echo "<div class='leftContainer'>";
+            echo "<div class='userInfo'>";
+            echo '<h3>User Info</h3>';
+            userInfo();
+            echo "</div>";
+
+            echo "<div class='favImages images'>";
+            echo '<h3>Favorited Images</h3>';
+            favImages();
+            // echo "</div>";
+            echo "</div>";
+
+
+            echo "<div class='searchBox'>";
+            echo '<h3>Search</h3>';
+            echo '<div id="filterInput">
+                                    <form action="./search.php" method="get">
+                                        <input type="text" class="searchPhoto" name="title" placeholder="Search By Title (Leave blank for all photos)" />
+                                    <button class="button" type="submit">Search</button>
+                                    </form>
+                                    </div>';
+            echo "</div>";
+            echo "<div class='imagesYouLike images'>";
+            echo '<h3>Images You May Like</h3>';
+            imagesYouLike();
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        } else {
+            echo '<div>
                         <section>
                             <button id="login">Login</button>
                             <button id="join">Join</button>
@@ -62,9 +170,12 @@
                             </form>
                         </section>
                      </div>';
-            }
+        }
+
+
         ?>
     </main>
+
 
     <footer>
         <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
