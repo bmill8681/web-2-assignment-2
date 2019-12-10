@@ -17,7 +17,7 @@ function getCities()
 }
 function getImages()
 {
-    $sql = "SELECT ImageID, UserID, CityCode, Title, Description, Latitude, Longitude, CountryCodeISO, Colors, Path, Exif";
+    $sql = "SELECT ActualCreator, ImageID, UserID, CityCode, Title, Description, Latitude, Longitude, CountryCodeISO, Colors, Path, Exif";
     
     
     
