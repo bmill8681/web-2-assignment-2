@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('config.inc.php');
 require_once('helper.php');
 require_once('setConnection.php');
@@ -153,7 +153,6 @@ function addFavsButton()
             <a href="single-country.php">Countries</a>
             <a href="single-city.php">Cities</a>
             <?php
-            session_start();
             if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
                 echo '<a href="profile.php">Profile</a>';
                 echo '<a href="favorites.php">Favorites</a>';
