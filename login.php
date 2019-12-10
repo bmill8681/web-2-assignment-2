@@ -23,6 +23,8 @@ function sanitizeInput($data)
 
 function validateLogin($email, $password)
 {
+    // Redirect user to welcome page
+    header("location: index.php");
     $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "SELECT UserID, Password FROM userslogin WHERE UserName=?";
@@ -36,10 +38,7 @@ function validateLogin($email, $password)
                 // Store data in session variables
                 $_SESSION["loggedin"] = true;
                 $_SESSION["id"] = $row['UserID'];
-                $_SESSION["username"] = $email;
-
-                // Redirect user to welcome page
-                header("location: index.php");
+                $_SESSION["username"] = $email;                
             }
         }
         loginError("Incorrect password");
