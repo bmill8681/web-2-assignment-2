@@ -4,8 +4,8 @@ session_start();
 
 ini_set('display_errors', 'On');
 
-$email = "";
-$password = "";
+// $email = "";
+// $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = sanitizeInput($_POST["email"]);
@@ -38,7 +38,7 @@ function validateLogin($email, $password)
             $_SESSION["username"] = $email;
 
             // Redirect user to welcome page
-            header("location: index.php");
+            // header("location: index.php");
         } else {
             loginError("Incorrect password");
         }
@@ -89,7 +89,11 @@ function loginError($a)
 </head>
 
 <body>
-
+    <?php 
+        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+            header("location: index.php");
+        } 
+    ?>
     <nav>
         <div class="logo"></div>
         <div class="navlinks">
