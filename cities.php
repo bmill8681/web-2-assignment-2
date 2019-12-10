@@ -24,7 +24,7 @@
 
     // Building the SQL query
     $sql = "SELECT CityCode, AsciiName, CountryCodeISO, Latitude, Longitude, Population, Elevation, TimeZone ";
-    $sql .= "FROM Cities WHERE 1=1 ";
+    $sql .= "FROM cities WHERE 1=1 ";
 
     $iso = null;
     $queryResult = null;

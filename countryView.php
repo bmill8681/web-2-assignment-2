@@ -18,16 +18,14 @@ function printDescription()
 
         $country = printSingleCountry($iso);
 
-        echo "<table style='margin: 10px;'>";
-        echo "<tr><th>Country Name</th> <td>" . $country['CountryName'] . "</td></tr>";
-
-        echo "<tr><th>Capital</th> <td>" . $country['Capital'] . "</td></tr>";
-
-        echo "<tr><th>Country Area</th> <td>" . $country['Area'] . "</td></tr>";
-        echo "<tr><th>Country population</th> <td>" . $country['Population'] . "</td></tr>";
-        echo "<tr><th>Continent</th> <td>" . $country['Continent'] . "</td></tr>";
-        echo "<tr><th>Description</th> <td>" . $country['CountryDescription'] . "</td></tr>";
-        echo "</table>";
+        echo "<section class='locationData'>";
+        echo "<div><h2>Country Name</h2> <h3>" . $country['CountryName'] . "</h3></div>";
+        echo "<div><h2>Capital</h2><h3>" . $country['Capital'] . "</h3></div>";
+        echo "<div><h2>Country Area</h2> <h3>" . $country['Area'] . "</h3></div>";
+        echo "<div><h2>Country population</h2><h3>" . $country['Population'] . "</h3></div>";
+        echo "<div><h2><th>Continent</h2><h3>" . $country['Continent'] . "</h3></div>";
+        echo "<div><h2>Description</h2><h3>" . $country['CountryDescription'] . "</h3></div>";
+        echo "</section>";
     } else { }
 }
 
@@ -35,13 +33,9 @@ function displayCities()
 {
     if (isset($_GET["iso"])) {
         $iso = $_GET["iso"];
-
         $cities = cityByCountry($iso);
-
-
-        //         echo "<nav>";
         foreach ($cities as $c) {
-            echo "<p style='margin: 3px;text-align: center;'><a href='cityView.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></p>";
+            echo "<li><a href='cityView.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></li>";
         }
     }
 }
@@ -56,8 +50,9 @@ function displayPhotos()
 
         foreach ($photo as $p) {
             $path = $p['Path'];
-            $path = strtolower( $path );
-            echo "<a  style='margin: 20px' href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "' /> </a>";
+            $path = strtolower($path);
+            echo "<a href='single-photo.php?imageid=" . $p['ImageID'] . "'>";
+            echo "<img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "'/></a>";
         }
     }
 }
@@ -80,17 +75,24 @@ function displayPhotos()
 
 <body>
     <nav>
-        <div class="logo">LOGO</div>
+        <div class="logo"></div>
         <div class="navlinks">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
+            <a href="countryView.php" class="active">Countries</a>
             <a href="cityView.php">Cities</a>
-            <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a>
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
+            <?php
+                session_start();
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
+            ?>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>
@@ -99,18 +101,12 @@ function displayPhotos()
 
     <main>
         <div class="container">
-
-            <div class="countryFilter">
-
-                <h4>Country Filters</h4>
-                <fieldset>
+            <div class="filters">
+                <h4>Country Filters<span id="filtersButton" data-open="false">-</span></h4>
+                <section class="filterList">
 
                     <input type="text" class="search" placeholder="Country Name" list="filterList">
-                    <datalist id="filterList">
-                    </datalist>
-                </fieldset>
-
-                <fieldset>
+                    <datalist id="filterList"></datalist>
                     <select class="continent">Continent List
                         <option value="">Select Continent</option>
                         <option value="NA">North America</option>
@@ -120,57 +116,35 @@ function displayPhotos()
                         <option value="AS">Asia</option>
                         <option value="AN">Antarctica</option>
                         <option value="OC">Oceania</option>
-
-
-
                     </select>
-                </fieldset>
-
-                <fieldset>
-                    <input type="radio" class="click"><span> Countries with Images</span>
-                </fieldset>
-
-
-                <button type="submit" class="reset">Reset</button>
-
-
-
-
-
+                    <div><input type="checkbox" class="imageOnly"> Countries with Images</div>
+                    <button class="reset">Reset</button>
+                </section>
             </div>
 
             <div class="countryList">
-                <h4 style="margin: 10px;">Country List</h4>
-                <section>
-                    <ul class="listCountries" role="listbox">
-                    </ul>
-
-                </section>
-
+                <h4>Country List<span id="filtersButton2" data-open="false">-</span></h4>
+                <ul class="listCountries" role="listbox"></ul>
             </div>
             <div class="description">
-                <h4>Description</h4>
-                <?php printDescription(); ?>
+                <h4>Description<span id="filtersButton3" data-open="false">-</span></h4>
+                <section><?php printDescription(); ?></section>
             </div>
             <div class="cityList">
-
                 <h4>City List</h4>
-
-                <?php displayCities(); ?>
-
+                <ul><?php displayCities(); ?></ul>
             </div>
-
             <div class="photo">
-                <h4 style="margin-bottom: 2em;">Photo</h4>
-                <?php displayPhotos(); ?>
+                <h4>Photos</h4>
+                <section>
+                    <?php displayPhotos(); ?>
+                </section>
             </div>
-
-
         </div>
     </main>
 
     <footer>
-        <p class="copyright">© Group Assignment : Group Name : December 2019</p>
+    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
 
 
 

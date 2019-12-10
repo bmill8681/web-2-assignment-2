@@ -14,17 +14,24 @@
 
 <body>
     <nav>
-        <div class="logo">LOGO</div>
+        <div class="logo"></div>
         <div class="navlinks">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
-            <a href="search.php">Browse</a>
+            <a href="search.php" class="active">Browse</a>
             <a href="countryView.php">Countries</a>
             <a href="cityView.php">Cities</a>
-            <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a>
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
+            <?php
+                session_start();
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
+            ?>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>
@@ -50,6 +57,30 @@
                 <!-- TODO: Sort array of photos by title before echoing photos -->
                 <?php
                 require "searchHelper.inc.php";
+
+                function addFavsButton($id){
+                    // Check if logged in
+                    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+                        // Check if favorites is part of session
+                        if(isset($_SESSION['favorites'])){
+                            $favs = $_SESSION['favorites'];
+                            $found = array_search($id, $favs);
+                            if(!$found){
+                                echo "<button class='favoritesButton' data-imageid='".$id."'>Add To Favorites</button>";
+                            }else{
+                                echo "<button disabled='true'>Already Saved!</button>";
+                            }                            
+                        }else{ // If not part of session, add it
+                            $_SESSION['favorites'] = array();
+                            echo "<button class='favoritesButton' data-imageid='".$id."'>Add To Favorites</button>";
+                        }
+                    }
+                    else { // If not logged in, redirect to login page
+                        echo "<a href='login.php' ><button>Login to Save</button></a>";
+                    }
+                }
+
+
                 $photos = null;
                 if (isset($_GET['title'])) {
                     $photoTitle = $_GET['title'];
@@ -92,8 +123,9 @@
                     echo "<a href='./single-photo.php?imageid=".$photo['ImageID']."'><img src='https://storage.googleapis.com/photosasg02/square150/".$path."' alt='".$photo['Title']."' /></a>";
                     echo "<div><h2>".$photo['Title']."</h2>";
                     echo "<p>".$photo['ActualCreator']."</p>";
-                    echo "<section class='PhotoButtons'><a href='./single-photo.php?imageid=".$photo['ImageID']."'>View</a><button>Add To Favorites</button></section></div></section>";
-                    echo "</div>";
+                    echo "<section class='PhotoButtons'><a href='./single-photo.php?imageid=".$photo['ImageID']."'>View</a>";
+                    addFavsButton($photo['ImageID']);
+                    echo "</section></div></section></div>";
                 }
                 ?>
             </section>
@@ -101,7 +133,7 @@
     </main>
 
     <footer>
-        <p class="copyright">© Group Assignment : Group Name : December 2019</p>
+    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
     </footer>
 
 

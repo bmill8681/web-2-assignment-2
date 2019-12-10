@@ -12,10 +12,12 @@ function cityDetail()
         $cities = cityByID($id);
 
         foreach ($cities as $c) {
-            echo "<p style='margin: 4px;'> CityName: " . $c['AsciiName'] . "</p>";
-            echo "<p style='margin: 4px;'> Population: " . $c['Population'] . "</p>";
-            echo "<p style='margin: 4px;'> Elevation: " . $c['Elevation'] . "</p>";
-            echo "<p style='margin: 4px;'> Time Zone: " . $c['TimeZone'] . "</p>";
+            echo "<section class='locationData'>";
+            echo "<div><h2>CityName</h2><h3>" . $c['AsciiName'] . "</h3></div>";
+            echo "<div><h2>Population</h2><h3>" . $c['Population'] . "</h3></div>";
+            echo "<div><h2>Elevation</h2><h3>" . $c['Elevation'] . "</h3></div>";
+            echo "<div><h2>Time Zone</h2><h3>" . $c['TimeZone'] . "</h3></div>";
+            echo "</section>";
         }
     }
 }
@@ -29,7 +31,7 @@ function mapDec()
 
         foreach ($cities as $c) {
             echo "<picture class='picMap'> <img src='https://maps.googleapis.com/maps/api/staticmap?center=";
-            echo $c['Latitude'] . "," . $c['Longitude'] . "&zoom=12&size=500x500&maptype=hybrid&key=AIzaSyCMnhPvJhjCuI6n-8FIjVVPSJLzViJgfq4'></picture>";
+            echo $c['Latitude'] . "," . $c['Longitude'] . "&zoom=12&size=475x475&maptype=hybrid&key=AIzaSyCMnhPvJhjCuI6n-8FIjVVPSJLzViJgfq4'></picture>";
         }
     }
 }
@@ -44,7 +46,7 @@ function displayPicsForCity()
 
         foreach ($photo as $p) {
             $path = $p['Path'];
-            $path = strtolower( $path );
+            $path = strtolower($path);
             //            echo "<a  href='single-photo.php?imageid=" . $p['ImageID'] ". "&cityid=". $p['CityCode']. "&iso=" . $p['CountryCodeISO']. "'> <img src='case-travel-master/images/square150/" . $p['Path'] . "' /> </a>";
             echo "<a  href='single-photo.php?imageid=" . $p['ImageID'] . "'> <img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "' /> </a>";
         }
@@ -71,17 +73,24 @@ function displayPicsForCity()
 
 <body>
     <nav>
-        <div class="logo">LOGO</div>
+        <div class="logo"></div>
         <div class="navlinks">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
-            <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a>
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
+            <a href="cityView.php" class="active">Cities</a>
+            <?php
+                session_start();
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
+            ?>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>
@@ -91,17 +100,12 @@ function displayPicsForCity()
     <main>
         <div class="container">
 
-            <div class="countryFilter">
-
-                <h4>City Filters</h4>
-                <fieldset>
+            <div class="filters">
+                <h4>Country Filters<span id="filtersButton" data-open="false">-</span></h4>
+                <section class="filterList">
 
                     <input type="text" class="search" placeholder="Country Name" list="filterList">
-                    <datalist id="filterList">
-                    </datalist>
-                </fieldset>
-
-                <fieldset>
+                    <datalist id="filterList"></datalist>
                     <select class="continent">Continent List
                         <option value="">Select Continent</option>
                         <option value="NA">North America</option>
@@ -111,49 +115,32 @@ function displayPicsForCity()
                         <option value="AS">Asia</option>
                         <option value="AN">Antarctica</option>
                         <option value="OC">Oceania</option>
-
-
-
                     </select>
-                </fieldset>
-
-                <fieldset>
-                    <input type="radio" class="click"><span> Countries with Images</span>
-                </fieldset>
-
-
-                <button type="submit" class="reset">Reset</button>
-
-
-
-
-
+                    <div><input type="checkbox" class="imageOnly"> Countries with Images</div>
+                    <button class="reset">Reset</button>
+                </section>
             </div>
 
             <div class="countryList">
-                <h4>Country List</h4>
-                <section>
-                    <ul class="listCountries" role="listbox">
-                    </ul>
-
-                </section>
-
+                <h4>Country List<span id="filtersButton2" data-open="false">-</span></h4>
+                <ul class="listCountries" role="listbox"></ul>
             </div>
+
             <div class="description">
-                <h4>City Details</h4>
+                <h4>City Details<span id="filtersButton3" data-open="false">-</span></h4>
                 <?php cityDetail(); ?>
-
             </div>
-            <div class="cityList">
 
+            <div class="mapWrapper">
                 <h4>Map</h4>
-                <?php mapDec(); ?>
+                <section><?php mapDec(); ?></section>
             </div>
 
             <div class="photo">
-                <h4> City Photo</h4>
-                <?php displayPicsForCity(); ?>
-
+                <h4> City Photos</h4>
+                <section>
+                    <?php displayPicsForCity(); ?>
+                </section>
             </div>
 
 
@@ -161,7 +148,7 @@ function displayPicsForCity()
     </main>
 
     <footer>
-        <p class="copyright">© Group Assignment : Group Name : December 2019</p>
+    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
 
 
 

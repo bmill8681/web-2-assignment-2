@@ -1,0 +1,243 @@
+main div {
+    display: grid;
+    grid-template-rows: 250px calc(100% - 255px);
+    grid-template-columns: auto 50%;
+    grid-gap: 5px;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+}
+
+.photoWrapper, .titleWrapper, .detailWrapper {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+}
+/* Photo Styling */
+.photoWrapper {
+    grid-row: 1 / span 2;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.picInfo {
+    margin: 0px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+/* Title styling */
+.titleWrapper {
+    padding: 5px;
+    display: grid; 
+    grid-template-columns: calc(100% - 155px) 150px;
+    grid-gap: 5px;
+}
+.titleWrapper section {
+    display: grid;
+    grid-auto-rows: 50px calc(100% - 55px);
+    grid-gap: 5px;
+}
+.titleDetails{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    display: grid;
+    grid-template-rows: 50px 50px 50px;
+    grid-template-columns: 100%;
+    grid-gap: 5px;
+}
+.titleWrapper h1, .titleWrapper h2, .titleWrapper h3 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.titleWrapper h1 {
+    font-size: 1.5em;
+    border-bottom: 1px solid grey;
+}
+.titleWrapper a {
+    width: auto;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.titleWrapper a:hover {
+    background-color: rgb(248, 248, 248);
+}
+
+/* Details Section */
+.detailWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.tabContainer{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 50px calc(100% - 50px);
+    grid-template-columns: 100%;
+}
+
+.tabContainer header{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 100%; 
+}
+.tab {
+    border: 1px solid grey;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.tab:hover{
+    cursor: pointer;
+    background-color: rgb(248, 248, 248);
+}
+#info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 10px; 
+}
+
+.picDescription, .picDetail, .picDetail2{
+    font-size: 1.0em;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.picDetail, .picDetail2{
+    flex-direction: column;
+}
+
+.picMap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.picMap img {
+    max-width: 100%;
+    width: auto;
+    max-height: 100%;
+    height: auto;
+}
+
+.picColorWrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 35px;
+    width: 100%; 
+}
+.picColor{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+button {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.hoverDetails{
+    width: 350px;
+    height: 175px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+    background-color: rgba(245, 245, 245);
+    box-shadow: 10px 10px 20px rgba(65, 65, 65, 0.3);
+    position: absolute;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.hoverDetails h1, h2, h3{
+    font-size: 1em;
+}
+
+
+.Invisible{
+    visibility: hidden;
+}
+
+.Hide {
+    display: none;
+}
+
+@media only screen and (max-width: 750px){
+    main div {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 175px 50% auto;
+    }
+    .titleWrapper {
+        grid-row: 1;
+        height: 175px;
+    }
+    .photoWrapper{
+        grid-row: 2;
+    }
+    .picInfo {
+        margin: 0px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+    }
+    .titleWrapper h1, .titleWrapper h2, .titleWrapper h3 {
+        font-size: 1.25em;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .titleDetails{
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        display: grid;
+        grid-template-rows: repeat(3, 30px);
+        grid-template-columns: 100%;
+        grid-gap: 5px;
+    }
+    .titleDetails a {
+        font-size: 0.75em;
+    }
+}

@@ -1,0 +1,250 @@
+* {
+    box-sizing: border-box;
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/heroimage.jpg');
+/*    background-image: url(../images/pavel-barysevich-XmqsrSq63q4-unsplash.jpg);*/
+    background-size: cover;
+    padding: 100px 25px;
+}
+
+div section {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50px 50px;
+    grid-gap: 5px;
+    width: 600px;
+    margin: auto;
+}
+
+main button {
+    border: none;
+    border-radius: 5px;
+}
+button:hover {
+    cursor: pointer;
+    filter: invert(0.3);
+}
+
+.searchbox {
+    grid-column: 1 / span 2;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto 100px;
+    grid-gap: 5px;
+    background-color: none;
+    background-image: none;  
+}
+.searchbox input {
+    height: 50px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/*Logged in page*/
+
+
+main
+{
+/*    display: block;*/
+    display: grid;
+    background-image:url(../images/pavel-barysevich-XmqsrSq63q4-unsplash.jpg);
+/*    grid-template-columns: 1fr;*/
+    
+    background-size: cover;
+    background-position: center;
+      background-repeat: no-repeat;
+    
+}
+
+.container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(70px, auto);
+    
+}
+
+
+
+
+table, td, th {  
+  border: 1px solid #ddd;
+  text-align: left;
+    
+    border: none;
+/*    border-bottom: 2px solid grey;*/
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+    padding: 10px;
+    margin: 2em;
+    
+}
+
+th, td {
+      padding: 15px;
+    
+}
+
+img
+{
+    margin: 2em;
+}
+
+
+.searchPhoto {
+    width: 75%;
+    height: 30px;
+    display: inline-block;
+    margin: 20px 20px;
+     padding: 12px 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+}
+
+.button
+{
+  background-color: dodgerblue; 
+  border: none;
+    border-radius: 10px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+}
+
+.images{
+    height: 500px;
+    overflow:hidden; 
+    overflow-y:scroll;
+}
+
+ img
+    {
+        border-radius: 10px;
+    }
+
+
+
+
+@media only screen and (min-width: 751px) 
+{
+    .userInfo
+    {
+    /*    grid-column: 1 / 2;*/
+        grid-row: 1 / 3;   
+    }
+
+    .favImages
+    {
+    /*    grid-column: 1 / 2;*/
+        grid-row: 3 / 4;
+
+
+    }
+
+    .searchBox
+    {
+    /*    grid-column: 2 / 3;*/
+        grid-row: 1 / 2;
+    }
+
+    .imagesYouLike
+    {
+    /*    grid-column: 2 / 3;*/
+        grid-row: 3 / 4;
+    }
+    
+        h3
+    {
+        margin: 2em;
+        text-align: center;
+
+    }
+    
+    h1
+    {
+        text-align: center;
+        margin: 2em;
+    }
+    
+ 
+
+}
+
+@media only screen and (max-width: 750px) 
+{
+    section {
+        max-width: 90%;
+    }
+    
+    .container
+    {
+        grid-template-columns: 1fr;
+        
+    
+    }
+    
+    h3
+    {
+        margin: 10px;
+        text-align: center;
+        
+    
+    }
+    
+    .userInfo
+    {
+        grid-row: 1 / 2;   
+    }
+    
+    .searchBox
+        {
+
+            grid-row: 2 / 3;
+        }
+
+    .favImages
+        {
+            grid-row: 3 / 4;
+        }
+
+    
+
+    .imagesYouLike
+        {
+            grid-row: 4 / 5;
+        }
+    
+       .searchPhoto 
+        {
+            width: 60%;
+    
+        }
+    
+    .button
+        {
+          font-size: 10px;
+
+        }
+    
+   
+    
+   
+
+}
