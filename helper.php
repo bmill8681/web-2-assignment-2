@@ -323,4 +323,33 @@ function userProfile($userId)
     catch (PDOException $e){
         die ($e->getMessage());
     }
+    
+    
 }
+
+//function to get the iso of country
+    function getCountryISO($countryName)
+    {
+          try{
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
+        
+//        $sql = "SELECT CountryCodeISO FROM imagedetails WHERE 1=1 ";
+        
+         $sql = "select ISO from countries where CountryName=?";
+//        
+//            $sql = getImages();
+//            $sql .= " FROM imagedetails WHERE 1=1";
+
+         
+
+       $statment = runQuery($connection,$sql,array($countryName));
+        
+        $results = $statment->fetchAll(PDO::FETCH_ASSOC);
+        $connection = null;
+        
+        return $results;
+    }
+    catch (PDOException $e){
+        die ($e->getMessage());
+    }
+    }

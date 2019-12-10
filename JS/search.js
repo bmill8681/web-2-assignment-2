@@ -4,6 +4,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
 addSearchListeners = () => {
     addFilterButtonListeners();
+    if (document.querySelector(".favoritesButton")) {
+        let buttonList = document.querySelectorAll(".favoritesButton");
+        buttonList.forEach(cur => {
+            cur.addEventListener('click', (e) => addToFavorites(e));
+        });
+    }
+
+}
+
+addToFavorites = (e) => {
+    // console.log(e.target.dataset.imageid);
+    console.log(e.target);
+    fetch(`favoritesHelper.inc.php?imageid=${e.target.dataset.imageid}`)
+        .then(data => data.json())
+        .then(data => {
+            if (data) {
+                e.target.setAttribute("disabled", "true");
+                e.target.textContent = "Added to Favorites!";
+                console.log("ADDED");
+            }
+            else {
+                console.log("Not Added!");
+            }
+        });
 }
 
 addFilterButtonListeners = () => {

@@ -71,17 +71,23 @@
 <body>
     
     <nav>
-        <div class="logo">LOGO</div>
+        <div class="logo"></div>
         <div class="navlinks">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
             <a href="cityView.php">Cities</a>
-            <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a>
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
+            <?php
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php' class='active'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
+            ?>
         </div>
         <button class="hamburger">
             <i class="fa fa-bars"></i>
@@ -100,15 +106,14 @@
                 <input type="password" placeholder="Password" name="pass" required />
                 <input type="submit">
             </form>
-            
-     
-
+            <p>Do not have an account? <a href="signup.php">Sign up</a>.</p>
         </div>
     </main>
 
     <footer>
-        <p class="copyright">© Group Assignment : Group Name : December 2019</p>
-    </footer>
+    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
+
+</footer>
 
 
 

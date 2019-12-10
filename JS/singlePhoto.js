@@ -9,6 +9,20 @@ addDescriptionListeners = () => {
     document.querySelector(".picInfo").addEventListener('mouseover', (e) => showMouseOver(e));
     document.querySelector(".picInfo").addEventListener('mouseout', () => hideMouseOver());
     document.querySelector(".picInfo").addEventListener('mousemove', (e) => showMouseOver(e))
+    if(document.querySelector(".favoritesButton"))
+        document.querySelector(".favoritesButton").addEventListener('click', (e) => addToFavorites(e));
+}
+
+addToFavorites = (e) => {
+    fetch(`favoritesHelper.inc.php?imageid=${e.target.dataset.imageid}`)
+        .then(data => data.json())
+        .then(data => {
+            console.log(`Added: data`);
+            if(data){
+                document.querySelector(".favoritesButton").setAttribute("disabled", "true");
+                document.querySelector(".favoritesButton").textContent = "Added to Favorites!";
+            }
+        });
 }
 
 setDetails = type => {

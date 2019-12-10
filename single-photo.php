@@ -1,4 +1,5 @@
 <?php
+
 require_once('config.inc.php');
 require_once('helper.php');
 require_once('setConnection.php');
@@ -102,6 +103,31 @@ function picDescription()
     }
 }
 
+function addFavsButton(){
+    // Check if logged in
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+        // Check if favorites is part of session
+        if(isset($_SESSION['favorites'])){
+            $favs = $_SESSION['favorites'];
+            echo "<script type='text/javascript'>console.log(".json_encode($favs).");</script>";
+            echo "<script type='text/javascript'>console.log(".strval($_GET['imageid']).");</script>";
+            $found = array_search($_GET['imageid'], $favs);
+            if(!$found){
+                echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";   
+            }
+            else{
+                echo "<button disabled='true' class='favoritesbutton' >Already Saved!</button>";
+            }                
+        }else{ // If not part of session, add it
+            $_SESSION['favorites'] = array();
+            echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";
+        }
+    }
+    else { // If not logged in, redirect to login page
+        echo "<a href='login.php' ><button>Login to Save Favorite</button></a>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -120,25 +146,23 @@ function picDescription()
 
 <body>
     <nav>
-        <div class="logo">LOGO</div>
+        <div class="logo"></div>
         <div class="navlinks">
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
             <a href="countryView.php">Countries</a>
             <a href="cityView.php">Cities</a>
-            <!-- <a href="profile.php">Profile</a>
-            <a href="favorites.php">Favorites</a> -->
-            <a href="login.php" class="active">Login</a>
-            <a href="signup.php">Signup</a>
             <?php
-            if (isset($_SESSION['id'])) {
-                echo "<a href='logout.php'>Log Out</a>";
-            } else {
-                echo "<a href='profile.php'>Profile</a>";
-                echo "<a href='favorites.php'>Favorites</a>";
-            }
-
+                session_start();
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+                    echo '<a href="profile.php">Profile</a>';
+                    echo '<a href="favorites.php">Favorites</a>';
+                    echo "<a href='logout.php'>Logout</a>";
+                } else {
+                    echo "<a href='login.php'>Login</a>";
+                    echo '<a href="signup.php">Signup</a>';
+                }
             ?>
         </div>
         <button class="hamburger">
@@ -156,7 +180,7 @@ function picDescription()
                 <section>
                     <?php photoDetails();  ?>
                 </section>
-                <button>Add To Favorites</button>
+                <?php addFavsButton(); ?>
             </section>
             <section class="detailWrapper">
                 <section class="tabContainer">
@@ -174,7 +198,7 @@ function picDescription()
     </main>
 
     <footer>
-        <p class="copyright">© Group Assignment : Group Name : December 2019</p>
+    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
     </footer>
 
 </body>
