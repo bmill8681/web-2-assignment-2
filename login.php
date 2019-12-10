@@ -42,8 +42,6 @@ function validateLogin($email, $password)
             $_SESSION["id"] = $queryResult['UserID'];
             $_SESSION["username"] = $email;
 
-            // Redirect user to welcome page
-            // header("location: index.php");
 
         } else {
             loginError("Incorrect password");
@@ -51,24 +49,6 @@ function validateLogin($email, $password)
     } else {
         loginError("User with email $email not found");
     }
-    // if ($stmt->rowCount()) {
-    //     $queryResult = $stmt->fetchAll();
-    //     foreach ($queryResult as $row) {
-    //         if (password_verify($password, $row['Password'])) {
-
-    //             // Store data in session variables
-    //             $_SESSION["loggedin"] = true;
-    //             $_SESSION["id"] = $row['UserID'];
-    //             $_SESSION["username"] = $email;
-
-    //             // Redirect user to welcome page
-    //             header("location: index.php");
-    //         }
-    //     }
-    //     loginError("Incorrect password");
-    // } else {
-    //     loginError("User with email $email not found"); 
-    // }
 }
 
 function loginError($a)
