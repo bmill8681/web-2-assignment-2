@@ -22,14 +22,18 @@ main div {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+
 }
 .picInfo {
     margin: 0px;
     border-radius: 5px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
-    width: 100%;
+    width: auto;
     max-width: 100%;
     height: auto;
+    max-height: 100%;
 }
 /* Title styling */
 .titleWrapper {

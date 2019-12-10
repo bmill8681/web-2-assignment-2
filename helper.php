@@ -3,21 +3,18 @@
 //require_once('setConnection.php');
 //require_once('config.inc.php');
 //require_once('single-country.php');
-
 function getCountries()
 {
     $sql = "SELECT ISO, ISONumeric, CountryName, Capital, CityCode, Area, Population, Continent, TopLevelDomain, CurrencyCode, CurrencyName, PhoneCountryCode, Languages, Neighbours, CountryDescription";
     
     return $sql;
 }
-
 function getCities()
 {
     $sql = "SELECT CityCode, AsciiName, CountryCodeISO, Latitude, Longitude, Population, Elevation, TimeZone";
     
     return $sql;
 }
-
 function getImages()
 {
     $sql = "SELECT ImageID, UserID, CityCode, Title, Description, Latitude, Longitude, CountryCodeISO, Colors, Path, Exif";
@@ -26,12 +23,6 @@ function getImages()
     
     return $sql;
 }
-
-
-
-
-
-
 function printSingleCountry($iso){
    try {
        
@@ -47,25 +38,20 @@ function printSingleCountry($iso){
             $statement = runQuery($connection,$sql,array($iso));
             $row = $statement->fetch(PDO::FETCH_ASSOC);
             $connection = null;
-
        return $row;
    }
    catch (PDOException $e) {
        die( $e->getMessage() );
      } 
   }
-
-
 function getAllCountries()
 {
     try{
-
            $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
         
            // Building the SQL query and set initial params
             $sql = getCountries();
             $sql .= " FROM Countries WHERE 1=1 ";
-
              $result = runQuery($connection, $sql, null);
     
          return $result;
@@ -73,13 +59,10 @@ function getAllCountries()
         catch (PDOException $e) {
             die( $e->getMessage());
         }
-
 }
-
 function getAllCities()
 {
         try{
-
            $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
         
             
@@ -88,9 +71,7 @@ function getAllCities()
             
             $sql = getCities();
             $sql .= " FROM cities WHERE 1=1";
-
          
-
              $result = runQuery($connection, $sql, null);
 //            $result = $pdo->query($sql);
            
@@ -103,8 +84,6 @@ function getAllCities()
         }
     
 }
-
-
   function cityByCountry($iso){
    try {
        $connection = setConnectionInfo(DBCONNECTION,DBUSER,DBPASS);
@@ -125,7 +104,6 @@ function getAllCities()
        die( $e->getMessage() );
      } 
   }
-
 function cityByID($id)
 {
       try {
@@ -147,9 +125,6 @@ function cityByID($id)
        die( $e->getMessage() );
      } 
 }
-
-
-
 function allPhotos()
 {
     try{
@@ -161,9 +136,7 @@ function allPhotos()
         
             $sql = getImages();
             $sql .= " FROM imagedetails WHERE 1=1";
-
          
-
         $result = runQuery($connection, $sql, null);
         
         $result = runQuery($connection, $sql, null);
@@ -175,7 +148,6 @@ function allPhotos()
     }
     
 }
-
 function photosByCountry($iso)
 {
       try{
@@ -185,7 +157,6 @@ function photosByCountry($iso)
           
             $sql = getImages();
             $sql .= " FROM imagedetails WHERE CountryCodeISO=?";
-
             $statement = runQuery($connection,$sql,array($iso));
        
             $results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -198,7 +169,6 @@ function photosByCountry($iso)
         die ($e->getMessage());
     }
 }
-
 function detailForSinglePhoto($imageId)
 {
     try{
@@ -223,7 +193,6 @@ function detailForSinglePhoto($imageId)
         die ($e->getMessage());
     }
 }
-
 function pictureForSingleCity($imageId)
 {
        try{
@@ -247,7 +216,6 @@ function pictureForSingleCity($imageId)
         die ($e->getMessage());
     }
 }
-
 //function to print the name of the country based on the iso
 function printNameOfCountry($iso)
 {
@@ -273,7 +241,6 @@ function printNameOfCountry($iso)
     }
 //    select CountryName from countries where ISO = "SS";
 }
-
 function printNameOfCities($Cityid)
 {
       try{
@@ -297,7 +264,6 @@ function printNameOfCities($Cityid)
         die ($e->getMessage());
     }
 }
-
 //function to print the user's detail
 function userProfile($userId)
 {
@@ -310,9 +276,7 @@ function userProfile($userId)
 //        
 //            $sql = getImages();
 //            $sql .= " FROM imagedetails WHERE 1=1";
-
          
-
        $statment = runQuery($connection,$sql,array($userId));
         
         $results = $statment->fetchAll(PDO::FETCH_ASSOC);
@@ -323,4 +287,30 @@ function userProfile($userId)
     catch (PDOException $e){
         die ($e->getMessage());
     }
+    
+    
 }
+//function to get the iso of country
+    function getCountryISO($countryName)
+    {
+          try{
+        $connection = setConnectionInfo(DBCONNECTION, DBUSER, DBPASS);
+        
+//        $sql = "SELECT CountryCodeISO FROM imagedetails WHERE 1=1 ";
+        
+         $sql = "select ISO from countries where CountryName=?";
+//        
+//            $sql = getImages();
+//            $sql .= " FROM imagedetails WHERE 1=1";
+         
+       $statment = runQuery($connection,$sql,array($countryName));
+        
+        $results = $statment->fetchAll(PDO::FETCH_ASSOC);
+        $connection = null;
+        
+        return $results;
+    }
+    catch (PDOException $e){
+        die ($e->getMessage());
+    }
+    }

@@ -19,7 +19,6 @@ function userInfo()
             echo "<tr><th> Last Name</th> <td>" . $u['LastName']  . "</td></tr>";
             echo "<tr><th>Country</th> <td>" . $u['Country']  . "</td></tr>";
             echo "<tr><th>City</th> <td>" . $u['City']  . "</td></tr>";
-
             echo "</table>";
         }
     }
@@ -120,16 +119,13 @@ function addPhoto($photo)
             <i class="fa fa-bars"></i>
         </button>
     </nav>
-
-    <main>
-
         <?php
 
 
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
 
-
-            echo "<div class='container'>";
+            echo "<main class='mainloggedin'>";
+            echo "<div class='containerloggedin'>";
 
             // echo "<div class='leftContainer'>";
             echo "<div class='userInfo'>";
@@ -159,8 +155,10 @@ function addPhoto($photo)
             echo "</div>";
             echo "</div>";
             echo "</div>";
+            echo "</main>";
         } else {
-            echo '<div>
+            echo '<main class="mainloggedout">
+                    <div class="loggedouthome">
                         <section>
                             <button id="login">Login</button>
                             <button id="join">Join</button>
@@ -169,7 +167,8 @@ function addPhoto($photo)
                                 <button type="submit" id="searchbutton">Search</button>
                             </form>
                         </section>
-                     </div>';
+                     </div>
+                </main>';
         }
 
 

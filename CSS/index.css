@@ -1,7 +1,8 @@
 * {
     box-sizing: border-box;
 }
-main div {
+
+.mainloggedout {
     width: 100%;
     height: 100%;
     background-image: url('../images/heroimage.jpg');
@@ -45,7 +46,33 @@ button:hover {
     padding: 5px;
 }
 
-.container {
+/*Logged in page*/
+.mainloggedin
+{
+    display: grid;
+    background-image:url(../images/pavel-barysevich-XmqsrSq63q4-unsplash.jpg);    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5px;1
+}
+
+.containerloggedin
+{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+    background-color: none;
+    background-image: none; 
+    
+}
+
+.container
+{
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -56,47 +83,142 @@ button:hover {
     grid-gap: 5px;
     background-color: none;
     background-image: none; 
+    
 }
 
-.leftcontainer {
+.loggedouthome{
     width: 100%;
     height: 100%;
+    padding: 100px 25px;
+
+}
+
+
+table, td, th {  
+    border: 1px solid #ddd;
+    text-align: left;
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    padding: 10px;
+    margin: 2em;
+}
+
+th, td {
+      padding: 15px;
+}
+
+img
+{
+    margin: 2em;
+}
+
+
+.searchPhoto {
+    width: 75%;
+    height: 30px;
+    display: inline-block;
+    margin: 20px 20px;
+     padding: 12px 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     box-sizing: border-box;
-    padding: 5px;
-    grid-column: 1;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 62% 35%;
-    grid-gap: 5px;
-    background-color: none;
-    background-image: none; 
 }
 
-.userInfo {
-    grid-row: 1;
-    border: 1px solid grey;
-    border-radius: 5px;
-    background-color: whitesmoke;
-    width: 100%;
-    height: 100%;
-    background-image: none;
+.button
+{
+    background-color: dodgerblue; 
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
-.favoriteImages {
-    grid-row:2;
-    border: 1px solid grey;
-    border-radius: 5px;
-    background-color: whitesmoke;
-    width: 100%;
-    height: 100%;
-    background-image: none;
+.images{
+    height: 500px;
+    overflow:hidden; 
+    overflow-y:auto;
 }
 
+img{
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.8);
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+.userInfo{
+    grid-row: 1 / 3;   
+}
+
+.favImages{
+    grid-row: 3 / 4;
+}
+
+.searchBox{
+    grid-row: 1 / 2;
+}
+
+.imagesYouLike{
+    grid-row: 3 / 4;
+}
+
+h3{
+    margin: 2em;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    margin: 2em;
+}
 
 @media only screen and (max-width: 750px) 
 {
     section {
         max-width: 90%;
     }
-}
+    
+    .containerloggedin{
+        grid-template-columns: 1fr;
+    }
+    
+    h3{
+        margin: 10px;
+        text-align: center;    
+    }
+    
+    .userInfo{
+        grid-row: 1 / 2;   
+    }
+    
+    .searchBox{
+        grid-row: 2 / 3;
+    }
 
+    .favImages{
+        grid-row: 3 / 4;
+    }
+
+    .imagesYouLike{
+        grid-row: 4 / 5;
+    }
+    
+    .searchPhoto {
+        width: 60%;
+    }
+    
+    .button{
+        font-size: 10px;
+    }
+}
