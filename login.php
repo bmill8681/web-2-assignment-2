@@ -23,28 +23,46 @@ function sanitizeInput($data)
 
 function validateLogin($email, $password)
 {
-    // Redirect user to welcome page
-    header("location: index.php");
     $pdo = new PDO(DBCONNECTION, DBUSER, DBPASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "SELECT UserID, Password FROM userslogin WHERE UserName=?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($email));
-    if ($stmt->rowCount()) {
-        $queryResult = $stmt->fetchAll();
-        foreach ($queryResult as $row) {
-            if (password_verify($password, $row['Password'])) {
+    $queryResult = $stmt->fetch();
+    if($queryResult){
+        if (password_verify($password, $queryResult['Password'])) {
 
-                // Store data in session variables
-                $_SESSION["loggedin"] = true;
-                $_SESSION["id"] = $row['UserID'];
-                $_SESSION["username"] = $email;                
-            }
+            // Store data in session variables
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = $queryResult['UserID'];
+            $_SESSION["username"] = $email;
+
+            // Redirect user to welcome page
+            header("location: index.php");
+        } else {
+            loginError("Incorrect password");
         }
-        loginError("Incorrect password");
     } else {
-        loginError("User with email $email not found");
+        loginError("User with email $email not found"); 
     }
+    // if ($stmt->rowCount()) {
+    //     $queryResult = $stmt->fetchAll();
+    //     foreach ($queryResult as $row) {
+    //         if (password_verify($password, $row['Password'])) {
+
+    //             // Store data in session variables
+    //             $_SESSION["loggedin"] = true;
+    //             $_SESSION["id"] = $row['UserID'];
+    //             $_SESSION["username"] = $email;
+
+    //             // Redirect user to welcome page
+    //             header("location: index.php");
+    //         }
+    //     }
+    //     loginError("Incorrect password");
+    // } else {
+    //     loginError("User with email $email not found"); 
+    // }
 }
 
 function loginError($a)
