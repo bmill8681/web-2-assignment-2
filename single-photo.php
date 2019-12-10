@@ -33,7 +33,7 @@ function photoDetails()
 
             echo "<h1>" . $p['Title'] . "</h1>";
             echo "<div class='titleDetails'>";
-            echo "<h2>User ID: " . $p['UserID'] . "</h2>";
+            echo "<h2>" . $p['UserID'] . "</h2>";
             echo "<a href='single-city.php?id=" . $p['CityCode'] . "'>";
             echo "<h3>" . $cityname[0]['AsciiName'] . "</h3></a>";
             echo "<a href='single-country.php?iso=" . $p['CountryCodeISO'] . "'>";
