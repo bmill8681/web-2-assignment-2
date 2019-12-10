@@ -35,7 +35,7 @@ function displayCities()
         $iso = $_GET["iso"];
         $cities = cityByCountry($iso);
         foreach ($cities as $c) {
-            echo "<li><a href='cityView.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></li>";
+            echo "<li><a href='single-city.php?id=" . $c["CityCode"] . "'>" . $c["AsciiName"] . "</a></li>";
         }
     }
 }
@@ -80,18 +80,18 @@ function displayPhotos()
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php" class="active">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
-                session_start();
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                    echo '<a href="profile.php">Profile</a>';
-                    echo '<a href="favorites.php">Favorites</a>';
-                    echo "<a href='logout.php'>Logout</a>";
-                } else {
-                    echo "<a href='login.php'>Login</a>";
-                    echo '<a href="signup.php">Signup</a>';
-                }
+            session_start();
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo '<a href="profile.php">Profile</a>';
+                echo '<a href="favorites.php">Favorites</a>';
+                echo "<a href='logout.php'>Logout</a>";
+            } else {
+                echo "<a href='login.php'>Login</a>";
+                echo '<a href="signup.php">Signup</a>';
+            }
             ?>
         </div>
         <button class="hamburger">
@@ -128,7 +128,7 @@ function displayPhotos()
             </div>
             <div class="description">
                 <h4>Description<span id="filtersButton3" data-open="false">-</span></h4>
-                <section><?php printDescription(); ?></section>
+                <section class="descriptionContainer"><?php printDescription(); ?></section>
             </div>
             <div class="cityList">
                 <h4>City List</h4>
@@ -144,10 +144,7 @@ function displayPhotos()
     </main>
 
     <footer>
-    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
-
-
-
+        <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
     </footer>
 
 </body>

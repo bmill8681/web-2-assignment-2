@@ -7,42 +7,36 @@ session_start();
 
 
 function userInfo()
-    {
-//        echo session_id();
+{
+    //        echo session_id();
 
-        if (isset($_SESSION['id']))
-        {
-            //User is logged in
-            $userId = $_SESSION['id'];
-            
-//            print_r($userId);
-            $user = userProfile($userId);
+    if (isset($_SESSION['id'])) {
+        //User is logged in
+        $userId = $_SESSION['id'];
 
-            
-            foreach($user as $u)
-            {
-              
+        //            print_r($userId);
+        $user = userProfile($userId);
+
+
+        foreach ($user as $u) {
+
             echo "<table>";
             echo "<tr><th>First Name</th> <td>" . $u['FirstName']  . "</td></tr>";
             echo "<tr><th> Last Name</th> <td>" . $u['LastName']  . "</td></tr>";
-                 echo "<tr><th> Address</th> <td>" . $u['Address']  . "</td></tr>";
-                 echo "<tr><th>Region</th> <td>" . $u['Region']  . "</td></tr>";
-                 echo "<tr><th>Country</th> <td>" . $u['Country']  . "</td></tr>";
-                 echo "<tr><th>City</th> <td>" . $u['City']  . "</td></tr>";
-                 echo "<tr><th>Postal Code</th> <td>" . $u['Postal']  . "</td></tr>";
-                echo "<tr><th>Email</th> <td>" . $u['Email']  . "</td></tr>";
-                 echo "<tr><th>Phone</th> <td>" . $u['Phone']  . "</td></tr>";
-                 
-            echo "</table>";            
-            }
+            echo "<tr><th> Address</th> <td>" . $u['Address']  . "</td></tr>";
+            echo "<tr><th>Region</th> <td>" . $u['Region']  . "</td></tr>";
+            echo "<tr><th>Country</th> <td>" . $u['Country']  . "</td></tr>";
+            echo "<tr><th>City</th> <td>" . $u['City']  . "</td></tr>";
+            echo "<tr><th>Postal Code</th> <td>" . $u['Postal']  . "</td></tr>";
+            echo "<tr><th>Email</th> <td>" . $u['Email']  . "</td></tr>";
+            echo "<tr><th>Phone</th> <td>" . $u['Phone']  . "</td></tr>";
 
+            echo "</table>";
         }
-        else        
-        {
-            //No one is logged in
-        }
-  
+    } else {
+        //No one is logged in
     }
+}
 ?>
 
 
@@ -66,17 +60,17 @@ function userInfo()
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                    echo '<a href="profile.php" class="active">Profile</a>';
-                    echo '<a href="favorites.php">Favorites</a>';
-                    echo "<a href='logout.php'>Logout</a>";
-                } else {
-                    echo "<a href='login.php'>Login</a>";
-                    echo '<a href="signup.php">Signup</a>';
-                }
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo '<a href="profile.php" class="active">Profile</a>';
+                echo '<a href="favorites.php">Favorites</a>';
+                echo "<a href='logout.php'>Logout</a>";
+            } else {
+                echo "<a href='login.php'>Login</a>";
+                echo '<a href="signup.php">Signup</a>';
+            }
             ?>
         </div>
         <button class="hamburger">
@@ -85,9 +79,9 @@ function userInfo()
     </nav>
 
     <main>
-       <div>
-        <h1>User Profile</h1>
-           <div class='userInfo'>
+        <div>
+            <h1>User Profile</h1>
+            <div class='userInfo'>
                 <?php userInfo(); ?>
             </div>
 
@@ -95,10 +89,7 @@ function userInfo()
     </main>
 
     <footer>
-    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
-
-
-
+        <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
     </footer>
 
 

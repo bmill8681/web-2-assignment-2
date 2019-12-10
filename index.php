@@ -22,8 +22,8 @@
             <a href="index.php" class="active">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
                 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
                     echo '<a href="profile.php">Profile</a>';
@@ -67,7 +67,7 @@
     </main>
 
     <footer>
-        <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
+        <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
     </footer>
 
 

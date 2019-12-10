@@ -18,8 +18,8 @@
             <a href="index.php">Home</a>
             <a href="about.php" class="active">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
                 session_start();
                 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
@@ -81,7 +81,7 @@
     </main>
 
     <footer>
-    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
+    <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
 
     </footer>
 

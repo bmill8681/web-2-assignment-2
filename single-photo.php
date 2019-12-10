@@ -34,9 +34,9 @@ function photoDetails()
             echo "<h1>" . $p['Title'] . "</h1>";
             echo "<div class='titleDetails'>";
             echo "<h2>User ID: " . $p['UserID'] . "</h2>";
-            echo "<a href='cityView.php?id=" . $p['CityCode'] . "'>";
+            echo "<a href='single-city.php?id=" . $p['CityCode'] . "'>";
             echo "<h3>" . $cityname[0]['AsciiName'] . "</h3></a>";
-            echo "<a href='countryView.php?iso=" . $p['CountryCodeISO'] . "'>";
+            echo "<a href='single-country.php?iso=" . $p['CountryCodeISO'] . "'>";
             echo "<h3>" . $Countryname[0]['CountryName'] . "</h3></a>";
             echo "</div>";
         }
@@ -60,10 +60,10 @@ function hoverPhotoDetails()
                 echo "<h3> Focal Length: " . $data->focal_length . "</h3> ";
                 $colors = json_decode($p['Colors']);
                 echo "<div class='picColorWrapper'> <h3>Colors: </h3>";
-                foreach($colors as $color){
-                    echo "<div class='picColor' style='background-color: ".$color."'></div>";
+                foreach ($colors as $color) {
+                    echo "<div class='picColor' style='background-color: " . $color . "'></div>";
                 }
-                echo"</span></div>";
+                echo "</span></div>";
                 echo "</div>";
             } else {
                 echo "<p>No Details Available</p></div>";
@@ -90,10 +90,10 @@ function picDescription()
                 echo "<h3> Focal Length: " . $data->focal_length . "</h3> ";
                 $colors = json_decode($p['Colors']);
                 echo "<div class='picColorWrapper'> <h3>Colors: </h3>";
-                foreach($colors as $color){
-                    echo "<div class='picColor' style='background-color: ".$color."'></div>";
+                foreach ($colors as $color) {
+                    echo "<div class='picColor' style='background-color: " . $color . "'></div>";
                 }
-                echo"</span></div>";
+                echo "</span></div>";
                 echo "</div>";
             } else {
                 echo "<p>No Details Available</p></div>";
@@ -103,27 +103,26 @@ function picDescription()
     }
 }
 
-function addFavsButton(){
+function addFavsButton()
+{
     // Check if logged in
-    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         // Check if favorites is part of session
-        if(isset($_SESSION['favorites'])){
+        if (isset($_SESSION['favorites'])) {
             $favs = $_SESSION['favorites'];
-            echo "<script type='text/javascript'>console.log(".json_encode($favs).");</script>";
-            echo "<script type='text/javascript'>console.log(".strval($_GET['imageid']).");</script>";
+            echo "<script type='text/javascript'>console.log(" . json_encode($favs) . ");</script>";
+            echo "<script type='text/javascript'>console.log(" . strval($_GET['imageid']) . ");</script>";
             $found = array_search($_GET['imageid'], $favs);
-            if(!$found){
-                echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";   
-            }
-            else{
+            if (!$found) {
+                echo "<button class='favoritesButton' data-imageid='" . $_GET['imageid'] . "'>Add To Favorites</button>";
+            } else {
                 echo "<button disabled='true' class='favoritesbutton' >Already Saved!</button>";
-            }                
-        }else{ // If not part of session, add it
+            }
+        } else { // If not part of session, add it
             $_SESSION['favorites'] = array();
-            echo "<button class='favoritesButton' data-imageid='".$_GET['imageid']."'>Add To Favorites</button>";
+            echo "<button class='favoritesButton' data-imageid='" . $_GET['imageid'] . "'>Add To Favorites</button>";
         }
-    }
-    else { // If not logged in, redirect to login page
+    } else { // If not logged in, redirect to login page
         echo "<a href='login.php' ><button>Login to Save Favorite</button></a>";
     }
 }
@@ -151,18 +150,18 @@ function addFavsButton(){
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
-                session_start();
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                    echo '<a href="profile.php">Profile</a>';
-                    echo '<a href="favorites.php">Favorites</a>';
-                    echo "<a href='logout.php'>Logout</a>";
-                } else {
-                    echo "<a href='login.php'>Login</a>";
-                    echo '<a href="signup.php">Signup</a>';
-                }
+            session_start();
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo '<a href="profile.php">Profile</a>';
+                echo '<a href="favorites.php">Favorites</a>';
+                echo "<a href='logout.php'>Logout</a>";
+            } else {
+                echo "<a href='login.php'>Login</a>";
+                echo '<a href="signup.php">Signup</a>';
+            }
             ?>
         </div>
         <button class="hamburger">
@@ -198,7 +197,7 @@ function addFavsButton(){
     </main>
 
     <footer>
-    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
+        <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
     </footer>
 
 </body>

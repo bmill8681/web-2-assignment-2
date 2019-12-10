@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let a = document.createElement("a");
             let li = document.createElement('li');
 
-            a.setAttribute('href', "countryView.php?iso=" + c.ISO);
+            a.setAttribute('href', "single-country.php?iso=" + c.ISO);
             a.textContent = c.CountryName;
 
             list.appendChild(li);
@@ -154,11 +154,12 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector("#filtersButton3").addEventListener('click', e => {
         e.target.dataset.open === "false" ? e.target.dataset.open = "true" : e.target.dataset.open = "false";
         if(e.target.dataset.open === "true"){
-            document.querySelector(".locationData").classList.add("Hide");
+            console.log(document.querySelector(".descriptionContainer"))
+            document.querySelector(".descriptionContainer").classList.add("Hide");
             document.querySelector(".description").classList.add("Shrink");
             document.querySelector("#filtersButton3").textContent = "+";
         }else{
-            document.querySelector(".locationData").classList.remove("Hide");
+            document.querySelector(".descriptionContainer").classList.remove("Hide");
             document.querySelector(".description").classList.remove("Shrink");
             document.querySelector("#filtersButton3").textContent = "-";
         }

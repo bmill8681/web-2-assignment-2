@@ -1,17 +1,18 @@
 <?php
-    session_start();
+session_start();
 
-    function addPhoto($photo){
-        $path = $photo['Path'];
-        $path = strtolower( $path );
-        echo "<div class='PhotoWrapper'>"; 
-        echo "<section class='PhotoLeft'>";
-        echo "<a href='./single-photo.php?imageid=".$photo['ImageID']."'><img src='https://storage.googleapis.com/photosasg02/square150/".$path."' alt='".$photo['Title']."' /></a>";
-        echo "<div><h2>".$photo['Title']."</h2>";
-        echo "<p>".$photo['ActualCreator']."</p>";
-        echo "<section class='PhotoButtons'><button class='removePhoto' data-imageid='".$photo['ImageID']."'>Remove Photo</button>";
-        echo "</section></div></section></div>";
-    }
+function addPhoto($photo)
+{
+    $path = $photo['Path'];
+    $path = strtolower($path);
+    echo "<div class='PhotoWrapper'>";
+    echo "<section class='PhotoLeft'>";
+    echo "<a href='./single-photo.php?imageid=" . $photo['ImageID'] . "'><img src='https://storage.googleapis.com/photosasg02/square150/" . $path . "' alt='" . $photo['Title'] . "' /></a>";
+    echo "<div><h2>" . $photo['Title'] . "</h2>";
+    echo "<p>" . $photo['ActualCreator'] . "</p>";
+    echo "<section class='PhotoButtons'><button class='removePhoto' data-imageid='" . $photo['ImageID'] . "'>Remove Photo</button>";
+    echo "</section></div></section></div>";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,17 +35,17 @@
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                    echo '<a href="profile.php">Profile</a>';
-                    echo '<a href="favorites.php" class="active">Favorites</a>';
-                    echo "<a href='logout.php'>Logout</a>";
-                } else {
-                    echo "<a href='login.php'>Login</a>";
-                    echo '<a href="signup.php">Signup</a>';
-                }
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo '<a href="profile.php">Profile</a>';
+                echo '<a href="favorites.php" class="active">Favorites</a>';
+                echo "<a href='logout.php'>Logout</a>";
+            } else {
+                echo "<a href='login.php'>Login</a>";
+                echo '<a href="signup.php">Signup</a>';
+            }
             ?>
         </div>
         <button class="hamburger">
@@ -54,37 +55,33 @@
 
     <main>
         <div>
-            <?php 
-                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-                    if(isset($_SESSION['favorites'])){
-                        $favs = $_SESSION['favorites'];
-                        include 'searchHelper.inc.php';
-                        if(count($favs) == 0){
-                            echo "<h1>No favorites saved yet!</h1>";
-                        }else{
-                            echo "<button class='removeAll'>Remove All Photos</button>";
-                            echo "<section class='PhotoBox'>";
-                            foreach($favs as $id){
-                                $photo = GetPhotosByID($id);
-                                addPhoto($photo);
-                            }
-                            echo "</section>";
+            <?php
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                if (isset($_SESSION['favorites'])) {
+                    $favs = $_SESSION['favorites'];
+                    include 'searchHelper.inc.php';
+                    if (count($favs) == 0) {
+                        echo "<h1>No favorites saved yet!</h1>";
+                    } else {
+                        echo "<button class='removeAll'>Remove All Photos</button>";
+                        echo "<section class='PhotoBox'>";
+                        foreach ($favs as $id) {
+                            $photo = GetPhotosByID($id);
+                            addPhoto($photo);
                         }
+                        echo "</section>";
                     }
-                    else{
-                        echo "<section><h1>No favorites saved yet!</h1></section>";
-                    }
+                } else {
+                    echo "<section><h1>No favorites saved yet!</h1></section>";
                 }
+            }
             ?>
             <div></div>
         </div>
     </main>
 
     <footer>
-    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
-
-
-
+        <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
     </footer>
 
 

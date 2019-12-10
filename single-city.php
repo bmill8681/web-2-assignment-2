@@ -78,18 +78,18 @@ function displayPicsForCity()
             <a href="index.php">Home</a>
             <a href="about.php">About</a>
             <a href="search.php">Browse</a>
-            <a href="countryView.php">Countries</a>
-            <a href="cityView.php" class="active">Cities</a>
+            <a href="single-country.php">Countries</a>
+            <a href="single-city.php">Cities</a>
             <?php
-                session_start();
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-                    echo '<a href="profile.php">Profile</a>';
-                    echo '<a href="favorites.php">Favorites</a>';
-                    echo "<a href='logout.php'>Logout</a>";
-                } else {
-                    echo "<a href='login.php'>Login</a>";
-                    echo '<a href="signup.php">Signup</a>';
-                }
+            session_start();
+            if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+                echo '<a href="profile.php">Profile</a>';
+                echo '<a href="favorites.php">Favorites</a>';
+                echo "<a href='logout.php'>Logout</a>";
+            } else {
+                echo "<a href='login.php'>Login</a>";
+                echo '<a href="signup.php">Signup</a>';
+            }
             ?>
         </div>
         <button class="hamburger">
@@ -128,7 +128,7 @@ function displayPicsForCity()
 
             <div class="description">
                 <h4>City Details<span id="filtersButton3" data-open="false">-</span></h4>
-                <?php cityDetail(); ?>
+                <section class="descriptionContainer"><?php cityDetail(); ?></section>
             </div>
 
             <div class="mapWrapper">
@@ -148,10 +148,7 @@ function displayPicsForCity()
     </main>
 
     <footer>
-    <p class="copyright">© COMP 3512 Group Assignment | Brendon - Brett - David - Nhatty | December 2019</p>
-
-
-
+        <p class="copyright">© COMP 3512 | Brendon - Brett - David - Nhatty | Dec.2019</p>
     </footer>
 
 </body>

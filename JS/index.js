@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 addIndexListeners = () => {
+    if(document.querySelector("#login"))
         document.querySelector("#login").addEventListener('click', (e) => login(e));
+    if(document.querySelector("#join"))
         document.querySelector("#join").addEventListener('click', (e) => join(e));
 }
 
