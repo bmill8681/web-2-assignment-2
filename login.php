@@ -1,4 +1,9 @@
 <?php
+// We were struggling with a 'Cannot modify header information' after a request has been made
+// we found that this solution of turning on PHP output buffering seemed to fix our problem.
+// The reference for this solution can be found here: 
+// https://stackoverflow.com/questions/9707693/warning-cannot-modify-header-information-headers-already-sent-by-error?noredirect=1&lq=1
+ob_start();
 require_once('./config.inc.php');
 session_start();
 
@@ -29,7 +34,7 @@ function validateLogin($email, $password)
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array($email));
     $queryResult = $stmt->fetch();
-    if($queryResult){
+    if ($queryResult) {
         if (password_verify($password, $queryResult['Password'])) {
 
             // Store data in session variables
@@ -37,32 +42,12 @@ function validateLogin($email, $password)
             $_SESSION["id"] = $queryResult['UserID'];
             $_SESSION["username"] = $email;
 
-            // Redirect user to welcome page
-            // header("location: index.php");
         } else {
             loginError("Incorrect password");
         }
     } else {
-        loginError("User with email $email not found"); 
+        loginError("User with email $email not found");
     }
-    // if ($stmt->rowCount()) {
-    //     $queryResult = $stmt->fetchAll();
-    //     foreach ($queryResult as $row) {
-    //         if (password_verify($password, $row['Password'])) {
-
-    //             // Store data in session variables
-    //             $_SESSION["loggedin"] = true;
-    //             $_SESSION["id"] = $row['UserID'];
-    //             $_SESSION["username"] = $email;
-
-    //             // Redirect user to welcome page
-    //             header("location: index.php");
-    //         }
-    //     }
-    //     loginError("Incorrect password");
-    // } else {
-    //     loginError("User with email $email not found"); 
-    // }
 }
 
 function loginError($a)
@@ -89,11 +74,12 @@ function loginError($a)
 </head>
 
 <body>
-    <?php 
-        if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-            header("location: index.php");
-        } 
+    <?php
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        header("location: index.php");
+    }
     ?>
+
     <nav>
         <div class="logo"></div>
         <div class="navlinks">
